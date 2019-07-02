@@ -4,19 +4,22 @@ import Snap from 'snapsvg-cjs';
 class SheetMusic extends React.Component{
   svgRender() {
     let svg = Snap("#svg" + this.props.keyId.toString())
+    let g = svg.g()
     //svg.line(30, 30, this.props.width-30, 30).attr({stroke: '#000'})
-    Snap.load("Test.svg", (data) => {
-      console.log("hu")
-
+    Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/quarter_note.svg", (data) => {
+      let g = data.select("g")
+      //g.clone()
+      //g.clone()
       svg.rect(0,0,this.props.width,this.props.height).attr(
         {fill: '#FFF', stroke:'#000', strokeWidth:'5'})
+      //g.image("Test.svg", 0, 0, 200, 200)
       //svg.line(30, this.calculateLineHeight(0), this.props.width-30, this.calculateLineHeight(0)).attr({stroke: '#000', strokeWidth:'2'})
       this.drawLine(0,svg)
       this.drawLine(1,svg)
       this.drawLine(2,svg)
       this.drawLine(3,svg)
       this.drawLine(4,svg)
-      this.drawNotes(svg, this.props.json.notes)
+      this.drawNotes(svg, g, this.props.json.notes)
       //svg.append(data)
     })
 
@@ -24,19 +27,31 @@ class SheetMusic extends React.Component{
     // myCircle2.attr({ stroke: '#123456', 'strokeWidth': 3,
     //    fill: this.props.fill, 'opacity': 0.2 })
   }
-  drawNotes(svg, lo_notes) {
+  drawNotes(svg, shape, lo_notes) {
     var num = 0
     lo_notes.forEach((note) => {
-      this.drawNote(svg, num, note.relative_value)
+      this.drawNote(svg, shape, num, this.valueToPos(note.relative_value))
       num += 1
     })
   }
 
+  valueToPos(note) {
+    if(note < 1) {
+      return (-1 * note) - 7
+    } else {
+      return note
+    }
+  }
+
   // TODO : disgustingly hard coded
-  drawNote(svg, posx, posy) {
-    svg.ellipse(100 + (posx * this.lineHeight() * 2),
-    this.A_position() - (posy * (this.lineHeight() / 2)),
-    this.lineHeight() / 2, this.lineHeight() / 2)
+  drawNote(svg, shape, posx, posy) {
+    // svg.ellipse(100 + (posx * this.lineHeight() * 2),
+    // this.A_position() - (posy * (this.lineHeight() / 2)),
+    // this.lineHeight() / 2, this.lineHeight() / 2)
+      shape.attr({transform : "translate(" + (100 + (posx * this.lineHeight() * 2)) + ","
+      + (this.A_position() - (posy * (this.lineHeight() / 2))) + ")"})
+     //shape.attr({ transform : "translate(0 0)"})
+     svg.append(shape.clone())
   }
 
   drawLine(no, svg) {
@@ -44,7 +59,7 @@ class SheetMusic extends React.Component{
   }
 
   lineHeight() {
-    return (this.props.height / 15)
+    return (this.props.height / 25)
   }
 
   calculateLineHeight(no) {

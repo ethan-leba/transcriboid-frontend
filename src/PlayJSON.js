@@ -6,30 +6,30 @@ export function JSONtoAudio(json, synth) {
   }
   var currentTime = 0.0
   json.notes.forEach((note) => {
-    Tone.Transport.schedule(triggerSynth(note.relative_value + json.key_offset), parseFloat((note.duration + currentTime) * Tone.Time('1m')))
+    Tone.Transport.schedule(triggerSynth(note.relative_value), parseFloat((note.duration + currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })
 }
 
 function noteToString(note) {
-  var octave = Math.floor(note/12)
-  console.log(notes[note % 12] + octave.toString())
-  return notes[note % 12] + octave.toString()
+  console.log(notes[note])
+  return notes[note]
 }
 
-//TODO: Notes are from C but json is from A
-
 let notes = {
-  0 : "C",
-  1 : "C#",
-  2 : "D",
-  3 : "D#",
-  4 : "E",
-  5 : "F",
-  6 : "F#",
-  7 : "G",
-  8 : "G#",
-  9 : "A",
-  10 : "A#",
-  11 : "B"
+  '-1': "C4",
+  '-2' : "D4",
+  '-3' : "E4",
+  '-4' : "F4",
+  '-5' : "G4",
+  '-6' : "A4",
+  '-7' : "B4",
+  1 : "C5",
+  2 : "D5",
+  3 : "E5",
+  4 : "F5",
+  5 : "G5",
+  6 : "A5",
+  7 : "B5",
+  8 : "C6"
 }
