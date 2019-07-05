@@ -6,12 +6,10 @@ import Slider from './Slider';
 import SheetMusic from './SheetMusic'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       songdata: {notes: []}
-    };
   }
+
 
   componentDidMount() {
     const myHeaders = new Headers({
@@ -33,10 +31,19 @@ class App extends React.Component {
         var synth = new Tone.Synth().toMaster();
         JSONtoAudio(this.state.songdata, synth)
         Tone.Transport.toggle()
+        //this.addNote({relative_value: 3, duration: 1})
       })
 
       //create a synth and connect it to the master output (your speakers)
 
+  }
+
+  addNote = (note) => {
+    // this.state.songdata.notes.push(note)
+    // NOTE: outside scope??
+    this.setState({
+      songdata: {notes: this.state.songdata.notes.concat(note)}
+    })
   }
   // {JSON.stringify(this.state.songdata)}
   // <Slider keyId={1} width={window.innerWidth} fill={'green'}/>
@@ -46,6 +53,8 @@ class App extends React.Component {
     keyId={2}
     width={window.innerWidth - (10 * 2)}
     height={window.innerHeight/2}
+    marginX={30}
+    addNote={this.addNote}
     json={this.state.songdata}/>
     </div>;
   }

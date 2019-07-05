@@ -1,89 +1,164 @@
 import React from 'react';
 import Snap from 'snapsvg-cjs';
 //insert Element.prototype.limitDrag function here
-class SheetMusic extends React.Component{
+class SheetMusic extends React.Component {
+  state = {
+      hovernote: []
+  };
+
+
   svgRender() {
     let svg = Snap("#svg" + this.props.keyId.toString())
     let g = svg.g()
-    //svg.line(30, 30, this.props.width-30, 30).attr({stroke: '#000'})
-    Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/quarter_note.svg", (data) => {
-      let g = data.select("g")
-      //g.clone()
-      //g.clone()
-      svg.rect(0,0,this.props.width,this.props.height).attr(
-        {fill: '#FFF', stroke:'#000', strokeWidth:'5'})
-      //g.image("Test.svg", 0, 0, 200, 200)
-      //svg.line(30, this.calculateLineHeight(0), this.props.width-30, this.calculateLineHeight(0)).attr({stroke: '#000', strokeWidth:'2'})
-      this.drawLine(0,svg)
-      this.drawLine(1,svg)
-      this.drawLine(2,svg)
-      this.drawLine(3,svg)
-      this.drawLine(4,svg)
-      this.drawNotes(svg, g, this.props.json.notes)
-      //svg.append(data)
-    })
+    // NOTE: This method seems kind of clunky...
+    Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/eighth_note.svg", (e) => {
+      Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/quarter_note.svg", (q) => {
+        Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/half_note.svg", (h) => {
+          Snap.load("http://127.0.0.1:8887/svg_notes/whole_note.svg", (w) => {
+            let eg = e.select("g")
+            let qg = q.select("g")
+            let hg = h.select("g")
+            let wg = w.select("g")
+            const note_shapes = [eg, qg, hg, wg]
+            svg.rect(0, 0, this.props.width, this.props.height).attr({
+              fill: '#FFF',
+              stroke: '#000',
+              strokeWidth: '5'
+            })
+            this.drawLine(0, svg)
+            this.drawLine(1, svg)
+            this.drawLine(2, svg)
+            this.drawLine(3, svg)
+            this.drawLine(4, svg)
+            this.drawBoundingBox(2.25, -2, svg)
+            this.drawBoundingBox(2.75, -3, svg)
+            this.drawBoundingBox(3.25, -4, svg)
+            this.drawBoundingBox(3.75, -5, svg)
+            this.drawNotes(svg, note_shapes, this.props.json.notes.concat(this.state.hovernote))
 
-    //var myCircle2 = svg.circle(30,30,20)
-    // myCircle2.attr({ stroke: '#123456', 'strokeWidth': 3,
-    //    fill: this.props.fill, 'opacity': 0.2 })
+            // const test = svg.rect(40,40,40,40);
+            //svg.group(test).hover(() => {test.attr({ fill: '#FAF' })}, () => {test.attr({ fill: '#FFF' })})
+          })
+        })
+      })
+    })
   }
-  drawNotes(svg, shape, lo_notes) {
+
+  // Draws all the notes onto the lines
+  drawNotes(svg, lo_shape, lo_notes) {
     var num = 0
     lo_notes.forEach((note) => {
-      this.drawNote(svg, shape, num, this.valueToPos(note.relative_value))
+      this.drawNote(svg, lo_shape, num, note.relative_value, note.duration)
       num += 1
     })
   }
 
-  valueToPos(note) {
-    if(note < 1) {
-      return (-1 * note) - 7
-    } else {
-      return note
+
+  // TODO: this needs to be made better
+  // Draws a note onto the page given a position and a duration
+  drawNote(svg, lo_shape, posx, posy, duration) {
+    const x = 100 + (posx * this.lineHeight() * 2)
+    const y = this.C_position() - (posy * (this.lineHeight() / 2))
+    switch (duration) {
+      case 0.125:
+        lo_shape[0].attr({
+          transform: `translate(${x}, ${y})`
+        })
+        svg.append(lo_shape[0].clone())
+        break
+      case 0.25:
+        lo_shape[1].attr({
+          transform: `translate(${x}, ${y})`
+        })
+        svg.append(lo_shape[1].clone())
+        break
+      case 0.5:
+        lo_shape[2].attr({
+          transform: `translate(${x}, ${y})`
+        })
+        svg.append(lo_shape[2].clone())
+        break
+      case 1:
+        lo_shape[3].attr({
+          transform: `translate(${x}, ${y})`
+        })
+        svg.append(lo_shape[3].clone())
+        break
+      default:
+        break
     }
+
   }
 
-  // TODO : disgustingly hard coded
-  drawNote(svg, shape, posx, posy) {
-    // svg.ellipse(100 + (posx * this.lineHeight() * 2),
-    // this.A_position() - (posy * (this.lineHeight() / 2)),
-    // this.lineHeight() / 2, this.lineHeight() / 2)
-      shape.attr({transform : "translate(" + (100 + (posx * this.lineHeight() * 2)) + ","
-      + (this.A_position() - (posy * (this.lineHeight() / 2))) + ")"})
-     //shape.attr({ transform : "translate(0 0)"})
-     svg.append(shape.clone())
-  }
-
+  // Draws the lines representing the lines of the sheet music
   drawLine(no, svg) {
-    svg.line(30, this.calculateLineHeight(no), this.props.width-30, this.calculateLineHeight(no)).attr({stroke: '#000', strokeWidth:'2'})
+    svg.line(this.props.marginX, this.calculateLineHeight(no), this.props.width - this.props.marginX, this.calculateLineHeight(no)).attr({
+      stroke: '#000',
+      strokeWidth: '2'
+    })
   }
 
+  // Draws the bounding boxes for placing notes
+  drawBoundingBox(no, noteval, svg) {
+    const bb = svg.rect(this.props.marginX, this.calculateLineHeight(no), this.props.width - this.props.marginX * 2, this.lineHeight() / 2).attr({
+      fill: 'rgba(' + (50 + (no * 40)) + ',50,50,.8)'
+    })
+    const g = svg.group(bb)
+    g.hover(
+      () => {
+      this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
+      },
+      () => {
+      this.setState({hovernote: []})
+      })
+      // g.click(
+      //   () => {
+      //   this.props.addNote({relative_value: noteval, duration: 0.25})
+      // })
+  }
+
+  // The height or distance between each line on the sheet music
   lineHeight() {
     return (this.props.height / 25)
   }
 
+  // The absolute position of an individual line
   calculateLineHeight(no) {
     return no * this.lineHeight() + this.props.height / 3
   }
 
-  A_position() {
-    return this.calculateLineHeight(4) - (3 * this.lineHeight() / 2)
+  // The position of the C note
+  C_position() {
+    return this.calculateLineHeight(3) - (3 * this.lineHeight() / 2)
   }
 
   componentDidMount() {
     this.svgRender()
-   }
+  }
 
-   componentDidUpdate() {
-     this.svgRender()
-   }
+  componentDidUpdate() {
+    this.svgRender()
+  }
 
-render () {
-     const idKey = "svg" + this.props.keyId.toString()
-    return (
-      <svg style={this.props.style}
-            width={this.props.width} height={this.props.height} id={idKey}/>
+  render() {
+    const idKey = "svg" + this.props.keyId.toString()
+    return ( <
+      svg style = {
+        this.props.style
+      }
+      width = {
+        this.props.width
+      }
+      height = {
+        this.props.height
+      }
+      id = {
+        idKey
+      }
+      />
     )
   }
 }
+
+SheetMusic.MarginX = 30
 export default SheetMusic
