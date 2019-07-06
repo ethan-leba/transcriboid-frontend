@@ -1,3 +1,5 @@
-div {
-  background-color: red;
+.button {
+  background-color: black;
+  border-bottom: thick solid #2B383A;
+  color: white;
 }
