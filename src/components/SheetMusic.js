@@ -34,7 +34,7 @@ class SheetMusic extends React.Component {
             this.drawBoundingBox(2.75, -3, svg)
             this.drawBoundingBox(3.25, -4, svg)
             this.drawBoundingBox(3.75, -5, svg)
-            this.drawNotes(svg, note_shapes, this.props.json.notes.concat(this.state.hovernote))
+            this.drawNotes(svg, note_shapes, this.props.notes.concat(this.state.hovernote))
 
             // const test = svg.rect(40,40,40,40);
             //svg.group(test).hover(() => {test.attr({ fill: '#FAF' })}, () => {test.attr({ fill: '#FFF' })})
