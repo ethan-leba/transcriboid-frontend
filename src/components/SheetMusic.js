@@ -59,35 +59,28 @@ class SheetMusic extends React.Component {
   drawNote(svg, lo_shape, posx, posy, duration) {
     const x = 100 + (posx * this.lineHeight() * 2)
     const y = this.C_position() - (posy * (this.lineHeight() / 2))
+    var shapey = null
     switch (duration) {
       case 0.125:
-        lo_shape[0].attr({
-          transform: `translate(${x}, ${y})`
-        })
-        svg.append(lo_shape[0].clone())
+        shapey = lo_shape[0].clone()
         break
       case 0.25:
-        lo_shape[1].attr({
-          transform: `translate(${x}, ${y})`
-        })
-        svg.append(lo_shape[1].clone())
+        shapey = lo_shape[1].clone()
         break
       case 0.5:
-        lo_shape[2].attr({
-          transform: `translate(${x}, ${y})`
-        })
-        svg.append(lo_shape[2].clone())
+        shapey = lo_shape[2].clone()
         break
       case 1:
-        lo_shape[3].attr({
-          transform: `translate(${x}, ${y})`
-        })
-        svg.append(lo_shape[3].clone())
+        shapey = lo_shape[3].clone()
         break
       default:
         break
     }
-
+    shapey.attr({
+      transform: `translate(${x}, ${y})`,
+      pointerEvents: 'none'
+    })
+    svg.append(shapey)
   }
 
   // Draws the lines representing the lines of the sheet music
@@ -104,17 +97,17 @@ class SheetMusic extends React.Component {
       fill: 'rgba(' + (50 + (no * 40)) + ',50,50,.8)'
     })
     const g = svg.group(bb)
-    g.hover(
-      () => {
-      this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
-      },
-      () => {
-      this.setState({hovernote: []})
+    // g.hover(
+    //   () => {
+    //   this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
+    //   },
+    //   () => {
+    //   this.setState({hovernote: []})
+    //   })
+      g.click(
+        () => {
+        this.props.addNote({relative_value: noteval, duration: 0.25})
       })
-      // g.click(
-      //   () => {
-      //   this.props.addNote({relative_value: noteval, duration: 0.25})
-      // })
   }
 
   // The height or distance between each line on the sheet music
