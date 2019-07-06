@@ -1,11 +1,11 @@
 import Tone from 'tone';
 
-export function JSONtoAudio(json, synth) {
+export function JSONtoAudio(notes, synth) {
   function triggerSynth(note) {
 	   return (time) => synth.triggerAttackRelease(noteToString(note), '8n')
   }
   var currentTime = 0.0
-  json.notes.forEach((note) => {
+  notes.forEach((note) => {
     Tone.Transport.schedule(triggerSynth(note.relative_value), parseFloat((note.duration + currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })

@@ -7,7 +7,8 @@ import Button from "../components/Button";
 class MainPage extends React.Component {
   state = {
     loading: true,
-    songdata: {notes: []}
+    actual_song: [],
+    user_song: []
   };
 
   componentDidMount() {
@@ -18,27 +19,26 @@ class MainPage extends React.Component {
       headers: myHeaders
     })
       .then(response => {
-        console.log(response);
         return response.json();
       })
       .then(songdata => {
-        console.log(songdata);
-        this.setState({songdata});
+        this.setState({
+          actual_song: songdata.notes,
+          user_song: [songdata.notes[0]],
+          loading: false
+        });
       })
       .then(songdata => {
         var synth = new Tone.Synth().toMaster();
-        JSONtoAudio(this.state.songdata, synth);
+        JSONtoAudio(this.state.actual_song, synth);
         Tone.Transport.toggle();
-        this.setState({
-          loading: false
-        });
       });
     //create a synth and connect it to the master output (your speakers)
   }
 
   addNote = note => {
     this.setState({
-      songdata: {notes: this.state.songdata.notes.concat(note)}
+      user_song: this.state.user_song.concat(note)
     });
   };
 
@@ -53,7 +53,7 @@ class MainPage extends React.Component {
           height={window.innerHeight / 2}
           marginX={30}
           addNote={this.addNote}
-          notes={this.state.songdata.notes}
+          notes={this.state.user_song}
         />
         <Button />
       </div>
