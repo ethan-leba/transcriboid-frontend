@@ -52,6 +52,13 @@ class MainPage extends React.Component {
     });
   };
 
+  // Sets the duration
+  setDuration = duration => {
+    this.setState({
+      selected_duration: duration
+    })
+  }
+
   render() {
     return this.state.loading ? (
       <p> loading </p>
@@ -65,7 +72,18 @@ class MainPage extends React.Component {
           addNote={this.addNote}
           notes={this.state.user_song}
         />
-        <Button />
+      <button onClick={() => this.setDuration(0.125)}>
+        8th note
+      </button>
+      <button onClick={() => this.setDuration(0.25)}>
+        quarter
+      </button>
+      <button onClick={() => this.setDuration(0.5)}>
+        half
+      </button>
+      <button onClick={() => this.setDuration(1)}>
+        whole
+      </button>
       </div>
     );
   }
