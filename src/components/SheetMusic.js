@@ -30,7 +30,7 @@ class SheetMusic extends React.Component {
             this.drawLine(2, svg)
             this.drawLine(3, svg)
             this.drawLine(4, svg)
-            for(var i = -6; i <= 6; i++) {
+            for(var i = -7; i <= 6; i++) {
               this.drawBoundingBox(1.25 + (i * -.5), i, svg)
             }
             // this.drawBoundingBox(-1.75, 6, svg)

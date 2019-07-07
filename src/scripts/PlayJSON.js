@@ -6,11 +6,16 @@ export function JSONtoAudio(notes, synth) {
   }
   var currentTime = 0.0
   notes.forEach((note) => {
-    Tone.Transport.schedule(triggerSynth(note.relative_value), parseFloat((note.duration + currentTime) * Tone.Time('1m')))
+    Tone.Transport.schedule(triggerSynth(note.relative_value), parseFloat((currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })
 }
 
+export function PlayJSON(notes) {
+  var synth = new Tone.Synth().toMaster();
+  JSONtoAudio(notes, synth);
+  Tone.Transport.toggle();
+}
 function noteToString(note) {
   console.log(notes[note])
   return notes[note]

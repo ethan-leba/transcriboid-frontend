@@ -1,8 +1,9 @@
 import React from "react";
-import {JSONtoAudio} from "../scripts/PlayJSON";
+import {PlayJSON} from "../scripts/PlayJSON";
 import Tone from "tone";
 import SheetMusic from "../components/SheetMusic";
 import Button from "../components/Button";
+import axios from "axios";
 
 class MainPage extends React.Component {
   state = {
@@ -28,20 +29,17 @@ class MainPage extends React.Component {
           user_song: [songdata.notes[0]],
           loading: false
         });
-      })
-      .then(songdata => {
-        var synth = new Tone.Synth().toMaster();
-        JSONtoAudio(this.state.actual_song, synth);
-        Tone.Transport.toggle();
       });
-    //create a synth and connect it to the master output (your speakers)
   }
 
   // Adds the note to the user_song state given the relative_value supplied by
   // SheetMusic and the preselected duration
   addNote = noteval => {
     this.setState({
-      user_song: this.state.user_song.concat({relative_value: noteval, duration: this.state.selected_duration})
+      user_song: this.state.user_song.concat({
+        relative_value: noteval,
+        duration: this.state.selected_duration
+      })
     });
   };
 
@@ -56,8 +54,23 @@ class MainPage extends React.Component {
   setDuration = duration => {
     this.setState({
       selected_duration: duration
-    })
-  }
+    });
+  };
+
+  // Sends in the data to check if the user input is correct
+  submit = () => {
+    axios
+      .post("/submit", {
+        user: this.state.user_song,
+        actual: this.state.actual_song
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   render() {
     return this.state.loading ? (
@@ -72,18 +85,13 @@ class MainPage extends React.Component {
           addNote={this.addNote}
           notes={this.state.user_song}
         />
-      <button onClick={() => this.setDuration(0.125)}>
-        8th note
-      </button>
-      <button onClick={() => this.setDuration(0.25)}>
-        quarter
-      </button>
-      <button onClick={() => this.setDuration(0.5)}>
-        half
-      </button>
-      <button onClick={() => this.setDuration(1)}>
-        whole
-      </button>
+        <button onClick={() => this.setDuration(0.125)}>8th note</button>
+        <button onClick={() => this.setDuration(0.25)}>quarter</button>
+        <button onClick={() => this.setDuration(0.5)}>half</button>
+        <button onClick={() => this.setDuration(1)}>whole</button>
+        <button onClick={this.undo}>undo</button>
+        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
+        <button onClick={this.submit}>submit</button>
       </div>
     );
   }
