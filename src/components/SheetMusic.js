@@ -30,10 +30,15 @@ class SheetMusic extends React.Component {
             this.drawLine(2, svg)
             this.drawLine(3, svg)
             this.drawLine(4, svg)
-            this.drawBoundingBox(2.25, -2, svg)
-            this.drawBoundingBox(2.75, -3, svg)
-            this.drawBoundingBox(3.25, -4, svg)
-            this.drawBoundingBox(3.75, -5, svg)
+            for(var i = -6; i <= 6; i++) {
+              this.drawBoundingBox(1.25 + (i * -.5), i, svg)
+            }
+            // this.drawBoundingBox(-1.75, 6, svg)
+            // this.drawBoundingBox(1.25, 0, svg)
+            // this.drawBoundingBox(2.25, -2, svg)
+            // this.drawBoundingBox(2.75, -3, svg)
+            // this.drawBoundingBox(3.25, -4, svg)
+            // this.drawBoundingBox(3.75, -5, svg)
             this.drawNotes(svg, note_shapes, this.props.notes.concat(this.state.hovernote))
 
             // const test = svg.rect(40,40,40,40);
@@ -54,7 +59,6 @@ class SheetMusic extends React.Component {
   }
 
 
-  // TODO: this needs to be made better
   // Draws a note onto the page given a position and a duration
   drawNote(svg, lo_shape, posx, posy, duration) {
     const x = 100 + (posx * this.lineHeight() * 2)
@@ -92,9 +96,10 @@ class SheetMusic extends React.Component {
   }
 
   // Draws the bounding boxes for placing notes
+  // TODO: make invisible fr
   drawBoundingBox(no, noteval, svg) {
     const bb = svg.rect(this.props.marginX, this.calculateLineHeight(no), this.props.width - this.props.marginX * 2, this.lineHeight() / 2).attr({
-      fill: 'rgba(' + (50 + (no * 40)) + ',50,50,.8)'
+      fill: 'rgba(50,50,50,.0)'
     })
     const g = svg.group(bb)
     // g.hover(
@@ -106,7 +111,7 @@ class SheetMusic extends React.Component {
     //   })
       g.click(
         () => {
-        this.props.addNote({relative_value: noteval, duration: 0.25})
+        this.props.addNote(noteval)
       })
   }
 

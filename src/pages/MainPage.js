@@ -8,7 +8,8 @@ class MainPage extends React.Component {
   state = {
     loading: true,
     actual_song: [],
-    user_song: []
+    user_song: [],
+    selected_duration: 0.25
   };
 
   componentDidMount() {
@@ -36,9 +37,18 @@ class MainPage extends React.Component {
     //create a synth and connect it to the master output (your speakers)
   }
 
-  addNote = note => {
+  // Adds the note to the user_song state given the relative_value supplied by
+  // SheetMusic and the preselected duration
+  addNote = noteval => {
     this.setState({
-      user_song: this.state.user_song.concat(note)
+      user_song: this.state.user_song.concat({relative_value: noteval, duration: this.state.selected_duration})
+    });
+  };
+
+  // Removes the last element added
+  undo = () => {
+    this.setState({
+      user_song: this.state.user_song.slice(0, -1)
     });
   };
 
