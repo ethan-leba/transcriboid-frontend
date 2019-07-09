@@ -1,15 +1,22 @@
 import React from 'react';
 import SheetMusic from '../components/SheetMusic'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 
 class ComparePage extends React.Component {
   state = {
+      redirect_home: false,
       actual_song : [],
       corrected_song: []
   }
 
   componentDidMount() {
     //Sends in the data to check if the user input is correct
+    if(!this.props.hasPost()) {
+      this.setState({
+        redirect_home: true
+      })
+    } else {
       axios
         .post("/submit", this.props.popPost())
         .then((response) => {
@@ -22,8 +29,12 @@ class ComparePage extends React.Component {
         .catch(function(error) {
           console.log(error);
         });
+      }
   }
   render() {
+    if(this.state.redirect_home) {
+      return <Redirect to='/' />;
+    }
     return (
       <div className="App">
         <SheetMusic

@@ -7,7 +7,13 @@ import axios from "axios";
 import { Redirect } from 'react-router-dom';
 
 class MainPage extends React.Component {
-  // TODO: Comment
+  /*
+    loading: whether the data is still being fetched from the server
+    redirect: whether the page should redirect to comparison
+    actual_song: the song that the user is transcribing
+    user_song: the user's inputted song
+    selected_duration: what the currently selected note duration is
+  */
   state = {
     loading: true,
     redirect: false,
