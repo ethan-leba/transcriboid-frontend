@@ -60,20 +60,6 @@ class MainPage extends React.Component {
     });
   };
 
-  // Sends in the data to check if the user input is correct
-  // submit = () => {
-  //   axios
-  //     .post("/submit", {
-  //       user: this.state.user_song,
-  //       actual: this.state.actual_song
-  //     })
-  //     .then(function(response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // };
   submit = () => {
     this.props.setPost({
        user: this.state.user_song,
@@ -94,7 +80,7 @@ class MainPage extends React.Component {
     ) : (
       <div className="App">
         <SheetMusic
-          keyId={2}
+          keyId={1}
           width={window.innerWidth - 10 * 2}
           height={window.innerHeight / 2}
           marginX={30}
