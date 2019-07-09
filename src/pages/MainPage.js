@@ -4,10 +4,13 @@ import Tone from "tone";
 import SheetMusic from "../components/SheetMusic";
 import Button from "../components/Button";
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 class MainPage extends React.Component {
+  // TODO: Comment
   state = {
     loading: true,
+    redirect: false,
     actual_song: [],
     user_song: [],
     selected_duration: 0.25
@@ -58,21 +61,34 @@ class MainPage extends React.Component {
   };
 
   // Sends in the data to check if the user input is correct
+  // submit = () => {
+  //   axios
+  //     .post("/submit", {
+  //       user: this.state.user_song,
+  //       actual: this.state.actual_song
+  //     })
+  //     .then(function(response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // };
   submit = () => {
-    axios
-      .post("/submit", {
-        user: this.state.user_song,
-        actual: this.state.actual_song
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
+    this.props.setPost({
+       user: this.state.user_song,
+      actual: this.state.actual_song
+     })
+    this.setState({
+      redirect: true
+    })
+  }
 
+// TODO: change play back
   render() {
+    if(this.state.redirect) {
+      return <Redirect to='/compare' />;
+    }
     return this.state.loading ? (
       <p> loading </p>
     ) : (
@@ -90,7 +106,7 @@ class MainPage extends React.Component {
         <button onClick={() => this.setDuration(0.5)}>half</button>
         <button onClick={() => this.setDuration(1)}>whole</button>
         <button onClick={this.undo}>undo</button>
-        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
+        <button onClick={() => PlayJSON(this.state.user_song)}>play</button>
         <button onClick={this.submit}>submit</button>
       </div>
     );

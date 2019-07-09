@@ -3,17 +3,37 @@ import { Switch, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage.js'
 import StartPage from './pages/StartPage.js'
 import ComparePage from './pages/ComparePage.js'
+import PropsRoute from './scripts/RouterHelper'
 
 class App extends React.Component {
+  state = {
+    post_object: []
+  }
+
+  // Sets the JSON to be posted in the compare page
+  setPost = song => {
+    this.setState ({
+      post_object: song
+    })
+  }
+
+  // Returns the post object and then clears it from the state
+  popPost = () => {
+    const tmp = this.state.post_object
+    this.setPost({})
+    return tmp
+  }
+
   render() {
     return (
       <Switch>
         <Route exact path="/" component={StartPage} />
-        <Route path="/main" component={MainPage} />
-        <Route path="/compare" component={ComparePage} />
+        <PropsRoute path="/main" component={MainPage} setPost ={this.setPost} />
+        <PropsRoute path="/compare" component={ComparePage} popPost={this.popPost}/>
       </Switch>
     )
   }
 }
+
 
 export default App;

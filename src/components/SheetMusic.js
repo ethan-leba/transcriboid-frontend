@@ -33,16 +33,7 @@ class SheetMusic extends React.Component {
             for(var i = -7; i <= 6; i++) {
               this.drawBoundingBox(1.25 + (i * -.5), i, svg)
             }
-            // this.drawBoundingBox(-1.75, 6, svg)
-            // this.drawBoundingBox(1.25, 0, svg)
-            // this.drawBoundingBox(2.25, -2, svg)
-            // this.drawBoundingBox(2.75, -3, svg)
-            // this.drawBoundingBox(3.25, -4, svg)
-            // this.drawBoundingBox(3.75, -5, svg)
             this.drawNotes(svg, note_shapes, this.props.notes.concat(this.state.hovernote))
-
-            // const test = svg.rect(40,40,40,40);
-            //svg.group(test).hover(() => {test.attr({ fill: '#FAF' })}, () => {test.attr({ fill: '#FFF' })})
           })
         })
       })
