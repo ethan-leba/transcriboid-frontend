@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Snap from 'snapsvg-cjs';
-//insert Element.prototype.limitDrag function here
+
 class SheetMusic extends React.Component {
   state = {
       hovernote: []
@@ -9,7 +10,6 @@ class SheetMusic extends React.Component {
 
   svgRender() {
     let svg = Snap("#svg" + this.props.keyId.toString())
-    let g = svg.g()
     // NOTE: This method seems kind of clunky...
     Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/eighth_note.svg", (e) => {
       Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/quarter_note.svg", (q) => {
@@ -87,7 +87,6 @@ class SheetMusic extends React.Component {
   }
 
   // Draws the bounding boxes for placing notes
-  // TODO: make invisible fr
   drawBoundingBox(no, noteval, svg) {
     const bb = svg.rect(this.props.marginX, this.calculateLineHeight(no), this.props.width - this.props.marginX * 2, this.lineHeight() / 2).attr({
       fill: 'rgba(50,50,50,.0)'
@@ -149,5 +148,13 @@ class SheetMusic extends React.Component {
   }
 }
 
-SheetMusic.MarginX = 30
+SheetMusic.propTypes = {
+  keyId: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  marginX: PropTypes.number,
+  addNote: PropTypes.func.isRequired,
+  notes: PropTypes.array.isRequired
+}
+
 export default SheetMusic
