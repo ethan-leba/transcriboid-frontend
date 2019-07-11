@@ -1,9 +1,7 @@
 import React from "react";
 import {PlayJSON} from "../scripts/PlayJSON";
-import Tone from "tone";
 import SheetMusic from "../components/SheetMusic";
 import Button from "../components/Button";
-import axios from "axios";
 import { Redirect } from 'react-router-dom';
 
 class MainPage extends React.Component {
@@ -66,6 +64,7 @@ class MainPage extends React.Component {
     });
   };
 
+  // Sets the post data and then redirects the user to the comparison page
   submit = () => {
     this.props.setPost({
        user: this.state.user_song,
@@ -76,7 +75,6 @@ class MainPage extends React.Component {
     })
   }
 
-// TODO: change play back
   render() {
     if(this.state.redirect) {
       return <Redirect to='/compare' />;
@@ -98,7 +96,7 @@ class MainPage extends React.Component {
         <button onClick={() => this.setDuration(0.5)}>half</button>
         <button onClick={() => this.setDuration(1)}>whole</button>
         <button onClick={this.undo}>undo</button>
-        <button onClick={() => PlayJSON(this.state.user_song)}>play</button>
+        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
         <button onClick={this.submit}>submit</button>
       </div>
     );

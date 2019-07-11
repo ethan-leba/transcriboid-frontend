@@ -1,39 +1,40 @@
-import React from 'react';
-import SheetMusic from '../components/SheetMusic'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios';
+import React from "react";
+import SheetMusic from "../components/SheetMusic";
+import {PlayJSON} from "../scripts/PlayJSON";
+import {Redirect} from "react-router-dom";
+import axios from "axios";
 
 class ComparePage extends React.Component {
   state = {
-      redirect_home: false,
-      actual_song : [],
-      corrected_song: []
-  }
+    redirect_home: false,
+    actual_song: [],
+    corrected_song: []
+  };
 
   componentDidMount() {
     //Sends in the data to check if the user input is correct
-    if(!this.props.hasPost()) {
+    if (!this.props.hasPost()) {
       this.setState({
         redirect_home: true
-      })
+      });
     } else {
       axios
         .post("/submit", this.props.popPost())
-        .then((response) => {
+        .then(response => {
           this.setState({
             actual_song: response.data.actual,
-            corrected_song: response.data.corrected,
-          })
+            corrected_song: response.data.corrected
+          });
           console.log(response);
         })
         .catch(function(error) {
           console.log(error);
         });
-      }
+    }
   }
   render() {
-    if(this.state.redirect_home) {
-      return <Redirect to='/' />;
+    if (this.state.redirect_home) {
+      return <Redirect to="/" />;
     }
     return (
       <div className="App">
@@ -45,6 +46,7 @@ class ComparePage extends React.Component {
           addNote={this.addNote}
           notes={this.state.actual_song}
         />
+        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
         <SheetMusic
           keyId={2}
           width={window.innerWidth - 10 * 2}
@@ -53,8 +55,9 @@ class ComparePage extends React.Component {
           addNote={this.addNote}
           notes={this.state.corrected_song}
         />
-        </div>
-    )
+        <button onClick={() => PlayJSON(this.state.corrected_song)}>play</button>
+      </div>
+    );
   }
 }
 

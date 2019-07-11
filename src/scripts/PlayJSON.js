@@ -6,7 +6,7 @@ export function JSONtoAudio(notes, synth) {
   }
   var currentTime = 0.0
   notes.forEach((note) => {
-    Tone.Transport.schedule(triggerSynth(note.relative_value), parseFloat((currentTime) * Tone.Time('1m')))
+    Tone.Transport.scheduleOnce(triggerSynth(note.relative_value), parseFloat((currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })
 }
