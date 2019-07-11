@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Snap from "snapsvg-cjs";
 
 class SheetMusic extends React.Component {
+  // FIXME: does hovernote need to be an array?
   state = {
     hovernote: []
   };
@@ -55,17 +56,17 @@ class SheetMusic extends React.Component {
   drawNotes(svg, lo_shape, lo_notes) {
     var num = 0;
     lo_notes.forEach(note => {
-      this.drawNote(svg, lo_shape, num, note.relative_value, note.duration);
+      this.drawNote(svg, lo_shape, num, note);
       num += 1;
     });
   }
 
   // Draws a note onto the page given a position and a duration
-  drawNote(svg, lo_shape, posx, posy, duration) {
-    const x = 100 + posx * this.lineHeight() * 2;
-    const y = this.C_position() - posy * (this.lineHeight() / 2);
+  drawNote(svg, lo_shape, no, note) {
+    const x = 100 + no * this.lineHeight() * 2;
+    const y = this.C_position() - note.relative_value * (this.lineHeight() / 2);
     var shapey = null;
-    switch (duration) {
+    switch (note.duration) {
       case 0.125:
         shapey = lo_shape[0].clone();
         break;
@@ -83,9 +84,15 @@ class SheetMusic extends React.Component {
     }
     shapey.attr({
       transform: `translate(${x}, ${y})`,
-      pointerEvents: "none"
+      pointerEvents: "none",
+      fill: 'rgb(3,100,3)'
     });
     svg.append(shapey);
+    if(this.props.comparison) {
+      svg.rect(x,30,10,10).attr({
+        fill: note.correct ? "#4ED81A" : "#FF336E"
+      });
+    }
   }
 
   // Draws the lines representing the lines of the sheet music
