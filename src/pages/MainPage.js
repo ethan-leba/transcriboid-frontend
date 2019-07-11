@@ -1,9 +1,10 @@
 import React from "react";
 import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
-import Button from "../components/Button";
-import { Redirect } from 'react-router-dom';
+//import Button from "../components/Button";
+import {Redirect} from "react-router-dom";
 
+// The main page where the user listens to the song and attempts to transcribe it.
 class MainPage extends React.Component {
   /*
     loading: whether the data is still being fetched from the server
@@ -67,22 +68,22 @@ class MainPage extends React.Component {
   // Sets the post data and then redirects the user to the comparison page
   submit = () => {
     this.props.setPost({
-       user: this.state.user_song,
+      user: this.state.user_song,
       actual: this.state.actual_song
-     })
+    });
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
 
   render() {
-    if(this.state.redirect) {
-      return <Redirect to='/compare' />;
+    if (this.state.redirect) {
+      return <Redirect to="/compare" />;
     }
     return this.state.loading ? (
       <p> loading </p>
     ) : (
-      <div className="App">
+      <div>
         <SheetMusic
           keyId={1}
           width={window.innerWidth - 10 * 2}

@@ -1,6 +1,13 @@
 import Tone from 'tone';
 
-export function JSONtoAudio(notes, synth) {
+// Takes in JSON representing a linear list of notes and plays them in order
+export function PlayJSON(notes) {
+  var synth = new Tone.Synth().toMaster();
+  JSONtoAudio(notes, synth);
+  Tone.Transport.toggle();
+}
+
+function JSONtoAudio(notes, synth) {
   function triggerSynth(note) {
 	   return (time) => synth.triggerAttackRelease(noteToString(note), '8n')
   }
@@ -11,11 +18,6 @@ export function JSONtoAudio(notes, synth) {
   })
 }
 
-export function PlayJSON(notes) {
-  var synth = new Tone.Synth().toMaster();
-  JSONtoAudio(notes, synth);
-  Tone.Transport.toggle();
-}
 function noteToString(note) {
   console.log(notes[note])
   return notes[note]
