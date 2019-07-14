@@ -19,6 +19,7 @@ class SheetMusic extends React.Component {
             "http://127.0.0.1:8887/svg_notes/stem_up/half_note.svg",
             h => {
               Snap.load("http://127.0.0.1:8887/svg_notes/whole_note.svg", w => {
+                svg.clear()
                 let eg = e.select("g");
                 let qg = q.select("g");
                 let hg = h.select("g");
@@ -123,16 +124,16 @@ class SheetMusic extends React.Component {
         fill: "rgba(50,50,50,.0)"
       });
     const g = svg.group(bb);
-    // g.hover(
-    //   () => {
-    //   this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
-    //   },
-    //   () => {
-    //   this.setState({hovernote: []})
-    //   })
-    g.click(() => {
+    g.mousedown(() => {
       this.props.addNote(noteval);
     });
+    g.hover(
+      () => {
+      this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
+      },
+      () => {
+      this.setState({hovernote: []})
+      })
   }
 
   // The height or distance between each line on the sheet music
@@ -162,6 +163,7 @@ class SheetMusic extends React.Component {
     const idKey = "svg" + this.props.keyId.toString();
     return (
       <svg
+        className="sheetmusic"
         style={this.props.style}
         width={this.props.width}
         height={this.props.height}
