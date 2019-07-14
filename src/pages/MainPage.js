@@ -1,4 +1,6 @@
 import React from "react";
+import Tone from 'tone';
+
 import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
 //import Button from "../components/Button";
@@ -74,6 +76,7 @@ class MainPage extends React.Component {
     this.setState({
       redirect: true
     });
+    Tone.Transport.stop();
   };
 
   render() {

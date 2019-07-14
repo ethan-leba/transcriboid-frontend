@@ -3,8 +3,10 @@ import Tone from 'tone';
 // Takes in JSON representing a linear list of notes and plays them in order
 export function PlayJSON(notes) {
   var synth = new Tone.Synth().toMaster();
+  Tone.Transport.stop();
+  Tone.Transport.clear();
   JSONtoAudio(notes, synth);
-  Tone.Transport.toggle();
+  Tone.Transport.start();
 }
 
 function JSONtoAudio(notes, synth) {
