@@ -1,0 +1,16 @@
+h1 {
+  font-size: 86px;
+  margin-bottom: 0;
+}
+
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-item {
+  max-width: 100%;
+  align-self: center;
+  text-align: center;
+}

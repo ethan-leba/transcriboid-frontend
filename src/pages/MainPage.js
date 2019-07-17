@@ -2,8 +2,9 @@ import React from "react";
 import Tone from 'tone';
 
 import {PlayJSON} from "../scripts/PlayJSON";
+
 import SheetMusic from "../components/SheetMusic";
-//import Button from "../components/Button";
+import Button from "../components/Button";
 import {Redirect} from "react-router-dom";
 
 // The main page where the user listens to the song and attempts to transcribe it.
