@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Snap from "snapsvg-cjs";
 
 class SheetMusic extends React.Component {
-  // FIXME: does hovernote need to be an array?
   state = {
     hovernote: null
   };
@@ -19,7 +18,7 @@ class SheetMusic extends React.Component {
             "http://127.0.0.1:8887/svg_notes/stem_up/half_note.svg",
             h => {
               Snap.load("http://127.0.0.1:8887/svg_notes/whole_note.svg", w => {
-                svg.clear()
+                svg.clear();
                 let eg = e.select("g");
                 let qg = q.select("g");
                 let hg = h.select("g");
@@ -40,11 +39,7 @@ class SheetMusic extends React.Component {
                     this.drawBoundingBox(1.25 + i * -0.5, i, svg);
                   }
                 }
-                this.drawNotes(
-                  svg,
-                  note_shapes,
-                  this.getHoverArray()
-                );
+                this.drawNotes(svg, note_shapes, this.getHoverArray());
               });
             }
           );
@@ -54,12 +49,18 @@ class SheetMusic extends React.Component {
   }
 
   getHoverArray = () => {
-    if(this.state.hovernote === null) {
-      return this.props.notes
+    if (this.state.hovernote === null) {
+      return this.props.notes;
     } else {
-      return [...this.props.notes, {relative_value: this.state.hovernote, duration: this.props.selectedDuration}]
+      return [
+        ...this.props.notes,
+        {
+          relative_value: this.state.hovernote,
+          duration: this.props.selectedDuration
+        }
+      ];
     }
-  }
+  };
 
   // Draws all the notes onto the lines
   drawNotes(svg, lo_shape, lo_notes) {
@@ -94,27 +95,27 @@ class SheetMusic extends React.Component {
     shapey.attr({
       transform: `translate(${x}, ${y})`,
       pointerEvents: "none",
-      fill: 'rgb(3,100,3)'
+      fill: "rgb(3,100,3)"
     });
     svg.append(shapey);
-    if(this.props.comparison) {
-      svg.rect(x,30,10,10).attr({
+    if (this.props.comparison) {
+      svg.rect(x, 30, 10, 10).attr({
         fill: note.correct ? "#4ED81A" : "#FF336E"
       });
     }
-    this.drawLedgerLines(svg,no,note)
+    this.drawLedgerLines(svg, no, note);
   }
 
   //TODO: this can be abstracted.
   // Draws the ledger lines depending on the value of the note
   drawLedgerLines(svg, no, note) {
     const x = 100 + no * this.lineHeight() * 2;
-    if(note.relative_value < -6) {
+    if (note.relative_value < -6) {
       svg
         .line(
-          x-15,
+          x - 15,
           this.calculateLineHeight(5),
-          x+15,
+          x + 15,
           this.calculateLineHeight(5)
         )
         .attr({
@@ -122,12 +123,12 @@ class SheetMusic extends React.Component {
           strokeWidth: "2"
         });
     }
-    if(note.relative_value > 4) {
+    if (note.relative_value > 4) {
       svg
         .line(
-          x-15,
+          x - 15,
           this.calculateLineHeight(-1),
-          x+15,
+          x + 15,
           this.calculateLineHeight(-1)
         )
         .attr({
@@ -135,12 +136,12 @@ class SheetMusic extends React.Component {
           strokeWidth: "2"
         });
     }
-    if(note.relative_value > 6) {
+    if (note.relative_value > 6) {
       svg
         .line(
-          x-15,
+          x - 15,
           this.calculateLineHeight(-2),
-          x+15,
+          x + 15,
           this.calculateLineHeight(-2)
         )
         .attr({
@@ -183,11 +184,12 @@ class SheetMusic extends React.Component {
     });
     g.hover(
       () => {
-      this.setState({hovernote: noteval})
+        this.setState({hovernote: noteval});
       },
       () => {
-      this.setState({hovernote: null})
-      })
+        this.setState({hovernote: null});
+      }
+    );
   }
 
   // The height or distance between each line on the sheet music
@@ -248,7 +250,9 @@ SheetMusic.propTypes = {
       props["editable"] === true &&
       (props[propName] === undefined || typeof props[propName] != "number")
     ) {
-      return new Error("The select duration is required if the sheet music is editable!");
+      return new Error(
+        "The select duration is required if the sheet music is editable!"
+      );
     }
   }
 };
