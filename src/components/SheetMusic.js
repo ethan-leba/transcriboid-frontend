@@ -36,7 +36,7 @@ class SheetMusic extends React.Component {
                 this.drawLine(3, svg);
                 this.drawLine(4, svg);
                 if (this.props.editable) {
-                  for (var i = -7; i <= 6; i++) {
+                  for (var i = -7; i <= 7; i++) {
                     this.drawBoundingBox(1.25 + i * -0.5, i, svg);
                   }
                 }
@@ -93,6 +93,52 @@ class SheetMusic extends React.Component {
       svg.rect(x,30,10,10).attr({
         fill: note.correct ? "#4ED81A" : "#FF336E"
       });
+    }
+    this.drawLedgerLines(svg,no,note)
+  }
+
+  //TODO: this can be abstracted.
+  // Draws the ledger lines depending on the value of the note
+  drawLedgerLines(svg, no, note) {
+    const x = 100 + no * this.lineHeight() * 2;
+    if(note.relative_value < -6) {
+      svg
+        .line(
+          x-15,
+          this.calculateLineHeight(5),
+          x+15,
+          this.calculateLineHeight(5)
+        )
+        .attr({
+          stroke: "#000",
+          strokeWidth: "2"
+        });
+    }
+    if(note.relative_value > 4) {
+      svg
+        .line(
+          x-15,
+          this.calculateLineHeight(-1),
+          x+15,
+          this.calculateLineHeight(-1)
+        )
+        .attr({
+          stroke: "#000",
+          strokeWidth: "2"
+        });
+    }
+    if(note.relative_value > 6) {
+      svg
+        .line(
+          x-15,
+          this.calculateLineHeight(-2),
+          x+15,
+          this.calculateLineHeight(-2)
+        )
+        .attr({
+          stroke: "#000",
+          strokeWidth: "2"
+        });
     }
   }
 
