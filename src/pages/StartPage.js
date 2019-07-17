@@ -15,7 +15,7 @@ class StartPage extends React.Component {
       <p className="main-item">A procedurally generated transcription app</p>
       <div></div>
       <Link to="/main">
-      <Button className="main-item">
+      <Button className="startbutton">
       <h3>START</h3>
       </Button>
       </Link>

@@ -14,3 +14,8 @@ h1 {
   align-self: center;
   text-align: center;
 }
+
+.startbutton {
+  margin: auto;
+  margin-top: 5em;
+}
