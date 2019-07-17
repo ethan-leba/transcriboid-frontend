@@ -94,6 +94,7 @@ class MainPage extends React.Component {
           marginX={30}
           addNote={this.addNote}
           notes={this.state.user_song}
+          selectedDuration={this.state.selected_duration}
         />
         <button onClick={() => this.setDuration(0.125)}>8th note</button>
         <button onClick={() => this.setDuration(0.25)}>quarter</button>

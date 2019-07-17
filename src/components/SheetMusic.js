@@ -5,7 +5,7 @@ import Snap from "snapsvg-cjs";
 class SheetMusic extends React.Component {
   // FIXME: does hovernote need to be an array?
   state = {
-    hovernote: []
+    hovernote: null
   };
 
   svgRender() {
@@ -43,7 +43,7 @@ class SheetMusic extends React.Component {
                 this.drawNotes(
                   svg,
                   note_shapes,
-                  this.props.notes.concat(this.state.hovernote)
+                  this.getHoverArray()
                 );
               });
             }
@@ -51,6 +51,14 @@ class SheetMusic extends React.Component {
         }
       );
     });
+  }
+
+  getHoverArray = () => {
+    if(this.state.hovernote === null) {
+      return this.props.notes
+    } else {
+      return [...this.props.notes, {relative_value: this.state.hovernote, duration: this.props.selectedDuration}]
+    }
   }
 
   // Draws all the notes onto the lines
@@ -175,10 +183,10 @@ class SheetMusic extends React.Component {
     });
     g.hover(
       () => {
-      this.setState({hovernote: [{relative_value: noteval, duration: 0.25}]})
+      this.setState({hovernote: noteval})
       },
       () => {
-      this.setState({hovernote: []})
+      this.setState({hovernote: null})
       })
   }
 
@@ -224,6 +232,9 @@ SheetMusic.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   marginX: PropTypes.number,
+  notes: PropTypes.array.isRequired,
+  editable: PropTypes.bool,
+  comparison: PropTypes.bool,
   addNote: (props, propName, componentName) => {
     if (
       props["editable"] === true &&
@@ -232,9 +243,14 @@ SheetMusic.propTypes = {
       return new Error("addNote is required if the sheet music is editable!");
     }
   },
-  notes: PropTypes.array.isRequired,
-  editable: PropTypes.bool,
-  comparison: PropTypes.bool
+  selectedDuration: (props, propName, componentName) => {
+    if (
+      props["editable"] === true &&
+      (props[propName] === undefined || typeof props[propName] != "number")
+    ) {
+      return new Error("The select duration is required if the sheet music is editable!");
+    }
+  }
 };
 
 SheetMusic.defaultProps = {
