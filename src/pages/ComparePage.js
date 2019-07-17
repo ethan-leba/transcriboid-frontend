@@ -1,8 +1,10 @@
 import React from "react";
+import Tone from "tone";
+import axios from "axios";
+
 import SheetMusic from "../components/SheetMusic";
 import {PlayJSON} from "../scripts/PlayJSON";
 import {Redirect} from "react-router-dom";
-import axios from "axios";
 
 // The page where the user sees the comparison between their input and the actual song
 class ComparePage extends React.Component {
@@ -46,27 +48,29 @@ class ComparePage extends React.Component {
 
   // Returns the amount of notes correct that the user inputted
   getAmtCorrect = () => {
-    return this.state.corrected_song.filter(note => note.correct).length
-  }
+    return this.state.corrected_song.filter(note => note.correct).length;
+  };
 
   // Returns the total number of notes
   getTotal = () => {
-    return this.state.actual_song.length
-  }
+    return this.state.actual_song.length;
+  };
 
   // Redirects to main
   handlePlayAgain = () => {
+    Tone.Transport.stop();
     this.setState({
       redirect_main: true
-    })
-  }
+    });
+  };
 
   // Redirects home
   handleBackToStart = () => {
+    Tone.Transport.stop();
     this.setState({
       redirect_home: true
-    })
-  }
+    });
+  };
 
   render() {
     if (this.state.redirect_home) {
@@ -76,11 +80,13 @@ class ComparePage extends React.Component {
       return <Redirect to="/main" />;
     }
     if (this.state.loading) {
-      return <p> loading... </p>;
+      return <p>loading...</p>;
     }
     return (
       <div className="App">
-        <p>Percent correct: {this.getAmtCorrect()} / {this.getTotal()}</p>
+        <p>
+          Percent correct: {this.getAmtCorrect()} / {this.getTotal()}
+        </p>
         <SheetMusic
           keyId={1}
           width={window.innerWidth - 10 * 2}
