@@ -18,6 +18,7 @@ class App extends React.Component {
       has_post: true
     })
   }
+  
 
   // Returns the post object and then clears it from the state
   popPost = () => {

@@ -84,29 +84,33 @@ class ComparePage extends React.Component {
     }
     return (
       <div className="App">
-        <p>
-          Percent correct: {this.getAmtCorrect()} / {this.getTotal()}
-        </p>
+        <div className="flexbar">
+          <h2>Actual Transcription</h2>
+          <button className="red" onClick={() => PlayJSON(this.state.actual_song)}>Play</button>
+        </div>
         <SheetMusic
           keyId={1}
           width={window.innerWidth - 10 * 2}
-          height={window.innerHeight / 2}
+          height={window.innerHeight / 3}
           notes={this.state.actual_song}
           editable={false}
         />
-        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
+        <div className="flexbar">
+          <h2>Your Transcription ({Math.floor((this.getAmtCorrect() / this.getTotal()) * 100)}% correct)</h2>
+          <button className="red" onClick={() => PlayJSON(this.state.corrected_song)}>
+            Play
+          </button>
+        </div>
         <SheetMusic
           keyId={2}
           width={window.innerWidth - 10 * 2}
-          height={window.innerHeight / 2}
+          height={window.innerHeight / 3}
           notes={this.state.corrected_song}
           editable={false}
           comparison={true}
         />
-        <button onClick={() => PlayJSON(this.state.corrected_song)}>
-          play
-        </button>
-        <button onClick={this.handlePlayAgain}>play again?</button>
+
+        <button onClick={this.handlePlayAgain}>Play again?</button>
         <button onClick={this.handleBackToStart}>back to start</button>
       </div>
     );

@@ -15,7 +15,7 @@ class StartPage extends React.Component {
           <p className="no-margin">A randomly generated transcription trainer.</p>
           </div>
           <Link to="/main">
-            <button className="large">START</button>
+            <button className="large">Start</button>
           </Link>
         <p className="madetag">Made by Ethan Leba, 2019</p>
       </div>
