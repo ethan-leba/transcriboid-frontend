@@ -5,8 +5,10 @@ h1 {
 
 #main {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
+  height: 100%;
 }
 
 .main-item {
@@ -16,6 +18,18 @@ h1 {
 }
 
 .startbutton {
-  margin: auto;
   margin-top: 5em;
+  margin: auto;
+}
+
+.madetag {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 1em;
+}
+
+.no-margin {
+  margin-top: 0px;
+  text-align: center;
 }

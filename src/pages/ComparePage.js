@@ -18,7 +18,7 @@ class ComparePage extends React.Component {
   state = {
     loading: true,
     redirect_home: false,
-    redirect_main: false,
+    redirect_main: false, // TODO: can be refactored out
     actual_song: [],
     corrected_song: []
   };
