@@ -3,6 +3,7 @@ import Tone from 'tone';
 // Takes in JSON representing a linear list of notes and plays them in order
 export function PlayJSON(notes, callback=() => {}) {
   var synth = new Tone.Synth().toMaster();
+  Tone.Transport.emit("stop");
   Tone.Transport.stop();
   Tone.Transport.clear();
   JSONtoAudio(notes, synth, callback);
@@ -14,11 +15,12 @@ function JSONtoAudio(notes, synth, callback) {
 	   return (time) => synth.triggerAttackRelease(noteToString(note), '8n')
   }
   var currentTime = 0.0
+  Tone.Transport.once("stop", callback);
   notes.forEach((note) => {
     Tone.Transport.scheduleOnce(triggerSynth(note.relative_value), parseFloat((currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })
-  Tone.Transport.scheduleOnce(callback, parseFloat((currentTime) * Tone.Time('1m')))
+  Tone.Transport.emit("stop");
 }
 
 function noteToString(note) {
