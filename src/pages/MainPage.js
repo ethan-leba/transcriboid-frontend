@@ -3,7 +3,7 @@ import Tone from 'tone';
 
 import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
-import Button from "../components/Button";
+//import Button from "../components/Button";
 import {Redirect} from "react-router-dom";
 
 // The main page where the user listens to the song and attempts to transcribe it.
@@ -96,7 +96,7 @@ class MainPage extends React.Component {
           notes={this.state.user_song}
           selectedDuration={this.state.selected_duration}
         />
-        <Button onClick={() => this.setDuration(0.125)}>8th note</Button>
+        <button function={() => this.setDuration(0.125)}>8th note</button>
         <button onClick={() => this.setDuration(0.25)}>quarter</button>
         <button onClick={() => this.setDuration(0.5)}>half</button>
         <button onClick={() => this.setDuration(1)}>whole</button>

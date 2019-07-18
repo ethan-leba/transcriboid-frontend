@@ -3,7 +3,42 @@
 h1, h3, p {
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6, button {
   font-family: 'Roboto Slab', serif;
   margin: 0px;
+}
+
+button {
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: #000;
+  border: none;
+  box-shadow: 0 5px #2B383A;
+}
+
+button:hover {background-color: #666}
+
+button:active {
+  background-color: #999;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+button.large {
+  padding: 15px 25px;
+  font-size: 24px;
+  box-shadow: 0 9px #2B383A;
+}
+
+button.large:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
