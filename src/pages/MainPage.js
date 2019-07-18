@@ -1,10 +1,12 @@
 import React from "react";
-import Tone from 'tone';
+import Tone from "tone";
 
 import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
 //import Button from "../components/Button";
 import {Redirect} from "react-router-dom";
+
+import "./MainPage.css";
 
 // The main page where the user listens to the song and attempts to transcribe it.
 class MainPage extends React.Component {
@@ -96,13 +98,21 @@ class MainPage extends React.Component {
           notes={this.state.user_song}
           selectedDuration={this.state.selected_duration}
         />
-        <button function={() => this.setDuration(0.125)}>8th note</button>
-        <button onClick={() => this.setDuration(0.25)}>quarter</button>
-        <button onClick={() => this.setDuration(0.5)}>half</button>
-        <button onClick={() => this.setDuration(1)}>whole</button>
-        <button onClick={this.undo}>undo</button>
-        <button onClick={() => PlayJSON(this.state.actual_song)}>play</button>
-        <button onClick={this.submit}>submit</button>
+        <div className="flexbar">
+          <div>
+            <button function={() => this.setDuration(0.125)}>Eighth</button>
+            <button onClick={() => this.setDuration(0.25)}>Quarter</button>
+            <button onClick={() => this.setDuration(0.5)}>Half</button>
+            <button onClick={() => this.setDuration(1)}>Whole</button>
+          </div>
+          <div>
+            <button onClick={() => PlayJSON(this.state.actual_song)}>
+              Play
+            </button>
+            <button className="red" onClick={this.undo}>Undo</button>
+            <button className="red" onClick={this.submit}>Submit</button>
+          </div>
+        </div>
       </div>
     );
   }

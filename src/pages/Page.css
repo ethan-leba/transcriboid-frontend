@@ -6,7 +6,7 @@ h1,h2,h3,h4,h5,h6, p, button {
 
 button {
   display: inline-block;
-  padding: 5px 15px;
+  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
@@ -20,7 +20,7 @@ button {
   box-shadow: 0 5px #2B383A;
 }
 
-button:hover {background-color: #666}
+button:hover {background-color: #444}
 
 button:active {
   background-color: #999;
@@ -37,4 +37,17 @@ button.large {
 button.large:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+button.red {
+  background-color: #F92B2B;
+  box-shadow: 0 5px #B20033;
+}
+
+button.red:hover {background-color: #E52B2B}
+
+button.red:active {
+  background-color: #912B2B;
+  box-shadow: 0 3px #B20033;
+  transform: translateY(2px);
 }
