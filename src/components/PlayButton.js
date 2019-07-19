@@ -18,16 +18,20 @@ class PlayButton extends React.Component {
   }
 
   play = () => {
-    this.props.emit('stop')
+    this.emitStop();
     this.setState({
       playing: true
     })
-    PlayJSON(this.props.music, () => {this.setState({playing: false})})
+    PlayJSON(this.props.music, () => {this.emitStop()})
   }
 
   stop = () => {
-    this.props.emit('stop')
+    this.emitStop();
     StopJSON();
+  }
+
+  emitStop = () => {
+    this.props.emit('stop')
   }
 
   render() {
@@ -43,6 +47,6 @@ PlayButton.propTypes = {
   music: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export const EmitterPlayButton = Emitter(PlayButton)
+export const EmitPlayButton = Emitter(PlayButton)
 
-export default PlayButton
+export default Emitter(PlayButton)

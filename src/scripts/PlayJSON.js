@@ -23,6 +23,8 @@ function JSONtoAudio(notes, synth, callback) {
      parseFloat((currentTime) * Tone.Time('1m')))
     currentTime += note.duration
   })
+  Tone.Transport.scheduleOnce(callback,
+   parseFloat((currentTime) * Tone.Time('1m')))
 }
 
 function noteToString(note) {
