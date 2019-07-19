@@ -29,7 +29,7 @@ class MainPage extends React.Component {
     const myHeaders = new Headers({
       Accept: "application/json"
     });
-    fetch("http://127.0.0.1:5000/song", {
+    fetch("http://127.0.0.1:5000/api/get", {
       headers: myHeaders
     })
       .then(response => {

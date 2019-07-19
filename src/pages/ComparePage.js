@@ -32,7 +32,7 @@ class ComparePage extends React.Component {
       });
     } else {
       axios
-        .post("/submit", this.props.popPost())
+        .post("api/compare", this.props.popPost())
         .then(response => {
           this.setState({
             actual_song: response.data.actual,
