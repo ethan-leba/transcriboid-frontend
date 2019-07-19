@@ -86,7 +86,7 @@ class MainPage extends React.Component {
       return <Redirect to="/compare" />;
     }
     return this.state.loading ? (
-      <p> loading </p>
+      <p></p>
     ) : (
       <div>
         <SheetMusic

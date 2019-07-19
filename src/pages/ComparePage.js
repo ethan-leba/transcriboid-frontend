@@ -1,10 +1,11 @@
 import React from "react";
 import Tone from "tone";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 import SheetMusic from "../components/SheetMusic";
 import {PlayJSON} from "../scripts/PlayJSON";
-import {Redirect} from "react-router-dom";
+import PlayButton from "../components/PlayButton";
 
 // The page where the user sees the comparison between their input and the actual song
 class ComparePage extends React.Component {
@@ -80,13 +81,14 @@ class ComparePage extends React.Component {
       return <Redirect to="/main" />;
     }
     if (this.state.loading) {
-      return <p>loading...</p>;
+      return null;
     }
     return (
       <div className="App">
         <div className="flexbar">
           <h2>Actual Transcription</h2>
           <button className="red" onClick={() => PlayJSON(this.state.actual_song)}>Play</button>
+          <PlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic
           keyId={1}
@@ -100,6 +102,8 @@ class ComparePage extends React.Component {
           <button className="red" onClick={() => PlayJSON(this.state.corrected_song)}>
             Play
           </button>
+          <PlayButton music={this.state.corrected_song} />
+
         </div>
         <SheetMusic
           keyId={2}
