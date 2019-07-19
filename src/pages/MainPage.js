@@ -5,7 +5,7 @@ import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
 //import Button from "../components/Button";
 import {Redirect} from "react-router-dom";
-
+import {EmitPlayButton} from "../components/PlayButton"
 import "./MainPage.css";
 
 // The main page where the user listens to the song and attempts to transcribe it.
@@ -85,10 +85,15 @@ class MainPage extends React.Component {
     if (this.state.redirect) {
       return <Redirect to="/compare" />;
     }
-    return this.state.loading ? (
-      <p></p>
-    ) : (
+    if (this.state.loading) {
+      return null;
+    }
+    return (
       <div>
+        <div className="flexbar">
+          <h2>Actual Transcription</h2>
+          <EmitPlayButton music={this.state.actual_song} />
+        </div>
         <SheetMusic
           keyId={1}
           width={window.innerWidth - 10 * 2}
@@ -106,11 +111,12 @@ class MainPage extends React.Component {
             <button onClick={() => this.setDuration(1)}>Whole</button>
           </div>
           <div>
-            <button onClick={() => PlayJSON(this.state.actual_song)}>
-              Play
+            <button className="red" onClick={this.undo}>
+              Undo
             </button>
-            <button className="red" onClick={this.undo}>Undo</button>
-            <button className="red" onClick={this.submit}>Submit</button>
+            <button className="red" onClick={this.submit}>
+              Submit
+            </button>
           </div>
         </div>
       </div>

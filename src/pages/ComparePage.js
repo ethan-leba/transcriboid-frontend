@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 
 import SheetMusic from "../components/SheetMusic";
 import {PlayJSON} from "../scripts/PlayJSON";
-import {EmitterPlayButton} from "../components/PlayButton";
+import {EmitPlayButton} from "../components/PlayButton";
 
 // The page where the user sees the comparison between their input and the actual song
 class ComparePage extends React.Component {
@@ -90,7 +90,7 @@ class ComparePage extends React.Component {
       <div className="App">
         <div className="flexbar">
           <h2>Actual Transcription</h2>
-          <EmitterPlayButton music={this.state.actual_song} />
+          <EmitPlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic
           keyId={1}
@@ -101,7 +101,7 @@ class ComparePage extends React.Component {
         />
         <div className="flexbar">
           <h2>Your Transcription ({this.getPct()}% correct)</h2>
-          <EmitterPlayButton music={this.state.corrected_song} />
+          <EmitPlayButton music={this.state.corrected_song} />
         </div>
         <SheetMusic
           keyId={2}
