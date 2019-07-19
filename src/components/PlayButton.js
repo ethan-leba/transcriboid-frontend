@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-
+import {Emitter} from 'react-emitter'
 import {PlayJSON, StopJSON} from "../scripts/PlayJSON";
 
 // The component used to play audio with
@@ -9,7 +9,16 @@ class PlayButton extends React.Component {
     playing: false
   }
 
+  componentDidMount() {
+    this.listener = this.props.addListener('stop', () => {
+      this.setState({
+        playing: false
+      })
+    })
+  }
+
   play = () => {
+    this.props.emit('stop')
     this.setState({
       playing: true
     })
@@ -17,7 +26,7 @@ class PlayButton extends React.Component {
   }
 
   stop = () => {
-    //this.setState({playing: false})
+    this.props.emit('stop')
     StopJSON();
   }
 
@@ -33,5 +42,7 @@ class PlayButton extends React.Component {
 PlayButton.propTypes = {
   music: PropTypes.arrayOf(PropTypes.object).isRequired
 }
+
+export const EmitterPlayButton = Emitter(PlayButton)
 
 export default PlayButton

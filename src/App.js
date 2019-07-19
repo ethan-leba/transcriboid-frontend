@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
+import { EmitterProvider, Emitter } from 'react-emitter'
+
 import MainPage from './pages/MainPage.js'
 import StartPage from './pages/StartPage.js'
 import ComparePage from './pages/ComparePage.js'
@@ -18,7 +20,7 @@ class App extends React.Component {
       has_post: true
     })
   }
-  
+
 
   // Returns the post object and then clears it from the state
   popPost = () => {
@@ -46,5 +48,9 @@ class App extends React.Component {
   }
 }
 
+const EmitterApp = Emitter(( {emit} ) => {
+  return <App />;
+})
 
-export default App;
+
+export default EmitterProvider(EmitterApp);

@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 
 import SheetMusic from "../components/SheetMusic";
 import {PlayJSON} from "../scripts/PlayJSON";
-import PlayButton from "../components/PlayButton";
+import {EmitterPlayButton} from "../components/PlayButton";
 
 // The page where the user sees the comparison between their input and the actual song
 class ComparePage extends React.Component {
@@ -73,6 +73,9 @@ class ComparePage extends React.Component {
     });
   };
 
+  getPct = () => {
+    return Math.floor((this.getAmtCorrect() / this.getTotal()) * 100);
+  };
   render() {
     if (this.state.redirect_home) {
       return <Redirect to="/" />;
@@ -87,8 +90,7 @@ class ComparePage extends React.Component {
       <div className="App">
         <div className="flexbar">
           <h2>Actual Transcription</h2>
-          <button className="red" onClick={() => PlayJSON(this.state.actual_song)}>Play</button>
-          <PlayButton music={this.state.actual_song} />
+          <EmitterPlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic
           keyId={1}
@@ -98,12 +100,8 @@ class ComparePage extends React.Component {
           editable={false}
         />
         <div className="flexbar">
-          <h2>Your Transcription ({Math.floor((this.getAmtCorrect() / this.getTotal()) * 100)}% correct)</h2>
-          <button className="red" onClick={() => PlayJSON(this.state.corrected_song)}>
-            Play
-          </button>
-          <PlayButton music={this.state.corrected_song} />
-
+          <h2>Your Transcription ({this.getPct()}% correct)</h2>
+          <EmitterPlayButton music={this.state.corrected_song} />
         </div>
         <SheetMusic
           keyId={2}

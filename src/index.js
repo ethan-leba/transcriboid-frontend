@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 import './index.css';
-import App from './App';
+import EmitterApp from './App';
 import * as serviceWorker from './serviceWorker';
 
 render (
     <BrowserRouter>
-      <App />
+      <EmitterApp />
     </BrowserRouter>,
     document.querySelector('#root')
     )
