@@ -10,8 +10,8 @@ class StartPage extends React.Component {
     return (
       <div id="main">
           <div>
-          <h1>Transcriboid</h1>
-          <p className="no-margin">A randomly generated transcription trainer.</p>
+          <h1 className="font-weight-bold">Transcriboid</h1>
+          <p className="m-0 text-center font-weight-normal">A randomly generated transcription trainer.</p>
           </div>
           <Link to="/main">
             <button className="large">Start</button>

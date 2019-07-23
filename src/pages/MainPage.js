@@ -88,9 +88,9 @@ class MainPage extends React.Component {
       return null;
     }
     return (
-      <div>
-        <div className="flexbar m-3">
-          <h2>Transciboid</h2>
+      <div className="h-100 my-auto">
+        <div className="flexbar mt-3 mb-2">
+          <h2 className="font-weight-bold m-0">Transciboid</h2>
           <EmitPlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic

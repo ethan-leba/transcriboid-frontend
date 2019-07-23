@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap');
 
+/* TODO: rename to button css */
 h1,h2,h3,h4,h5,h6, p, button {
   font-family: 'Roboto Slab', serif;
 }
@@ -17,7 +18,7 @@ button {
   text-decoration: none;
   outline: none;
   color: #fff;
-  margin-left: 5px;
+  margin: .125rem;
   background-color: #000;
   border: none;
   box-shadow: 0 5px var(--shadow-color);

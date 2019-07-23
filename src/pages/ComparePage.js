@@ -88,8 +88,8 @@ class ComparePage extends React.Component {
     }
     return (
       <div className="App">
-        <div className="flexbar">
-          <h2>Actual Transcription</h2>
+        <div className="flexbar my-2">
+          <h3 className="m-0 font-weight-bold">Actual Transcription</h3>
           <EmitPlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic
@@ -99,8 +99,8 @@ class ComparePage extends React.Component {
           notes={this.state.actual_song}
           editable={false}
         />
-        <div className="flexbar">
-          <h2>Your Transcription ({this.getPct()}% correct)</h2>
+        <div className="flexbar my-2">
+          <h3 className="m-0 font-weight-bold">Your Transcription ({this.getPct()}% correct)</h3>
           <EmitPlayButton music={this.state.corrected_song} />
         </div>
         <SheetMusic
@@ -111,7 +111,7 @@ class ComparePage extends React.Component {
           editable={false}
           comparison={true}
         />
-      <div className="flexbar flexcenter">
+      <div className="flexbar flexcenter my-2">
         <button className="medium" onClick={this.handleBackToStart}>Quit</button>
         <button className="medium red" onClick={this.handlePlayAgain} >Try again</button>
         </div>
