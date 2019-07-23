@@ -99,7 +99,7 @@ class SheetMusic extends React.Component {
     });
     svg.append(shapey);
     if (this.props.comparison) {
-      svg.rect(x, 30, 10, 10).attr({
+      svg.ellipse(x, 30, 6, 6).attr({
         fill: note.correct ? "#4ED81A" : "#FF336E"
       });
     }

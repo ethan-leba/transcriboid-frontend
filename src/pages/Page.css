@@ -48,6 +48,11 @@ button.medium {
   box-shadow: 0 6px var(--shadow-color);
 }
 
+button.thin {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 button.medium:active {
   box-shadow: 0 4px var(--pressed-shadow-color);
   transform: translateY(3px);

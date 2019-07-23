@@ -89,31 +89,31 @@ class MainPage extends React.Component {
     }
     return (
       <div>
-        <div className="flexbar">
-          <h2>Actual Transcription</h2>
+        <div className="flexbar m-3">
+          <h2>Transciboid</h2>
           <EmitPlayButton music={this.state.actual_song} />
         </div>
         <SheetMusic
           keyId={1}
           width={window.innerWidth - 10 * 2}
           height={window.innerHeight / 2}
-          marginX={30}
+          marginX={40}
           addNote={this.addNote}
           notes={this.state.user_song}
           selectedDuration={this.state.selected_duration}
         />
-        <div className="flexbar">
+      <div className="flexbar my-2">
           <div>
-            <button onClick={() => this.setDuration(0.125)}>Eighth</button>
-            <button onClick={() => this.setDuration(0.25)}>Quarter</button>
-            <button onClick={() => this.setDuration(0.5)}>Half</button>
-            <button onClick={() => this.setDuration(1)}>Whole</button>
+            <button className="medium thin" onClick={() => this.setDuration(0.125)}>Eighth</button>
+            <button className="medium thin" onClick={() => this.setDuration(0.25)}>Quarter</button>
+            <button className="medium thin" onClick={() => this.setDuration(0.5)}>Half</button>
+            <button className="medium thin" onClick={() => this.setDuration(1)}>Whole</button>
           </div>
           <div>
-            <button className="red" onClick={this.undo}>
+            <button className="medium thin red" onClick={this.undo}>
               Undo
             </button>
-            <button className="red" onClick={this.submit}>
+            <button className="medium thin red" onClick={this.submit}>
               Submit
             </button>
           </div>
