@@ -37,16 +37,22 @@ button.large {
   box-shadow: 0 9px var(--shadow-color);
 }
 
-button.medium {
-  padding: 12px 35px;
-  font-size: 18px;
-  box-shadow: 0 9px var(--shadow-color);
-}
-
 button.large:active {
   box-shadow: 0 5px var(--pressed-shadow-color);
   transform: translateY(4px);
 }
+
+button.medium {
+  padding: 12px 35px;
+  font-size: 18px;
+  box-shadow: 0 6px var(--shadow-color);
+}
+
+button.medium:active {
+  box-shadow: 0 4px var(--pressed-shadow-color);
+  transform: translateY(3px);
+}
+
 
 button.red {
   --pressed-shadow-color: #B20033;
