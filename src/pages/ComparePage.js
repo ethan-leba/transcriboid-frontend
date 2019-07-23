@@ -111,9 +111,10 @@ class ComparePage extends React.Component {
           editable={false}
           comparison={true}
         />
-
-        <button onClick={this.handlePlayAgain}>Play again?</button>
-        <button onClick={this.handleBackToStart}>back to start</button>
+      <div className="flexbar flexcenter">
+        <button className="medium" onClick={this.handleBackToStart}>Quit</button>
+        <button className="medium red" onClick={this.handlePlayAgain} >Try again</button>
+        </div>
       </div>
     );
   }
