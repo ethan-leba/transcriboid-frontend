@@ -1,5 +1,6 @@
 import React from "react";
 import Tone from "tone";
+import axios from "axios";
 
 import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
@@ -29,11 +30,9 @@ class MainPage extends React.Component {
     const myHeaders = new Headers({
       Accept: "application/json"
     });
-    fetch("http://127.0.0.1:5000/api/get", {
-      headers: myHeaders
-    })
+    axios.get("http://127.0.0.1:5000/api/get")
       .then(response => {
-        return response.json();
+        return response.data
       })
       .then(songdata => {
         this.setState({
