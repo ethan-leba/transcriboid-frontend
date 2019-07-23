@@ -104,7 +104,7 @@ class MainPage extends React.Component {
         />
         <div className="flexbar">
           <div>
-            <button function={() => this.setDuration(0.125)}>Eighth</button>
+            <button onClick={() => this.setDuration(0.125)}>Eighth</button>
             <button onClick={() => this.setDuration(0.25)}>Quarter</button>
             <button onClick={() => this.setDuration(0.5)}>Half</button>
             <button onClick={() => this.setDuration(1)}>Whole</button>

@@ -166,6 +166,7 @@ class SheetMusic extends React.Component {
       });
   }
 
+  // TODO: empty note on dehover
   // Draws the bounding boxes for placing notes
   drawBoundingBox(no, noteval, svg) {
     const bb = svg
@@ -194,12 +195,12 @@ class SheetMusic extends React.Component {
 
   // The height or distance between each line on the sheet music
   lineHeight() {
-    return this.props.height / 25;
+    return this.props.height / 20;
   }
 
   // The absolute position of an individual line
   calculateLineHeight(no) {
-    return no * this.lineHeight() + this.props.height / 3;
+    return no * this.lineHeight() + this.props.height / 2.75;
   }
 
   // The position of the C note
