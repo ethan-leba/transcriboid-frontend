@@ -5,6 +5,10 @@ h1,h2,h3,h4,h5,h6, p, button {
 }
 
 button {
+  --pressed-shadow-color: #666;
+  --pressed-color: #999;
+  --hover-color: #444;
+  --shadow-color: #2B383A;
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -16,37 +20,39 @@ button {
   margin-left: 5px;
   background-color: #000;
   border: none;
-  box-shadow: 0 5px #2B383A;
+  box-shadow: 0 5px var(--shadow-color);
 }
 
-button:hover {background-color: #444}
+button:hover {background-color: var(--hover-color)}
 
 button:active {
-  background-color: #999;
-  box-shadow: 0 3px #666;
+  background-color: var(--pressed-color);
+  box-shadow: 0 3px var(--shadow-color);
   transform: translateY(2px);
 }
 
 button.large {
   padding: 15px 55px;
   font-size: 24px;
-  box-shadow: 0 9px #2B383A;
+  box-shadow: 0 9px var(--shadow-color);
+}
+
+button.medium {
+  padding: 12px 35px;
+  font-size: 18px;
+  box-shadow: 0 9px var(--shadow-color);
 }
 
 button.large:active {
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px var(--pressed-shadow-color);
   transform: translateY(4px);
 }
 
 button.red {
+  --pressed-shadow-color: #B20033;
+  --pressed-color: #912B2B;
+  --hover-color: #E52B2B;
+  --shadow-color: #B20033;
   background-color: #F92B2B;
   box-shadow: 0 5px #B20033;
-}
-
-button.red:hover {background-color: #E52B2B}
-
-button.red:active {
-  background-color: #912B2B;
-  box-shadow: 0 3px #B20033;
-  transform: translateY(2px);
 }
