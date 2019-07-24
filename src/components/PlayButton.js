@@ -15,6 +15,9 @@ class PlayButton extends React.Component {
         playing: false
       })
     })
+    if(this.props.playOnLoad) {
+      this.play()
+    }
   }
 
   play = () => {
@@ -44,7 +47,12 @@ class PlayButton extends React.Component {
 }
 
 PlayButton.propTypes = {
-  music: PropTypes.arrayOf(PropTypes.object).isRequired
+  music: PropTypes.arrayOf(PropTypes.object).isRequired,
+  playOnLoad: PropTypes.bool
+}
+
+PlayButton.defaultProps = {
+  playOnLoad: false
 }
 
 export const EmitPlayButton = Emitter(PlayButton)
