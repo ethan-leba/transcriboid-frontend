@@ -87,7 +87,8 @@ class ComparePage extends React.Component {
       return null;
     }
     return (
-      <div className="App">
+      <div className="h-100 row align-items-center">
+        <div className="col">
         <div className="flexbar my-2">
           <h3 className="m-0 font-weight-bold">Actual Transcription</h3>
           <EmitPlayButton music={this.state.actual_song} />
@@ -114,6 +115,7 @@ class ComparePage extends React.Component {
       <div className="flexbar flexcenter my-2">
         <button className="medium" onClick={this.handleBackToStart}>Quit</button>
         <button className="medium red" onClick={this.handlePlayAgain} >Try again</button>
+        </div>
         </div>
       </div>
     );

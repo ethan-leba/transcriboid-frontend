@@ -13,6 +13,7 @@ import "./MainPage.css";
 class MainPage extends React.Component {
   /*
     loading: whether the data is still being fetched from the server
+    first_time: whether this is the first time the user has used this page
     redirect: whether the page should redirect to comparison
     actual_song: the song that the user is transcribing
     user_song: the user's inputted song
@@ -20,16 +21,15 @@ class MainPage extends React.Component {
   */
   state = {
     loading: true,
+    first_time: false,
     redirect: false,
     actual_song: [],
     user_song: [],
     selected_duration: 0.25
   };
 
+  // calls the python API
   componentDidMount() {
-    const myHeaders = new Headers({
-      Accept: "application/json"
-    });
     axios.get("http://127.0.0.1:5000/api/get")
       .then(response => {
         return response.data
@@ -41,6 +41,12 @@ class MainPage extends React.Component {
           loading: false
         });
       });
+      if(localStorage.getItem("first_time") === null) {
+        localStorage.setItem("first_time", false)
+        this.setState({
+          first_time: true
+        })
+      }
   }
 
   // Adds the note to the user_song state given the relative_value supplied by
@@ -88,10 +94,13 @@ class MainPage extends React.Component {
       return null;
     }
     return (
-      <div className="h-100 my-auto">
+      <div className="pt-3">
         <div className="flexbar mt-3 mb-2">
-          <h2 className="font-weight-bold m-0">Transciboid</h2>
-          <EmitPlayButton music={this.state.actual_song} />
+          <h2 className="font-weight-bold m-0">Transcriboid</h2>
+          <div className="d-flex align-items-end">
+            {this.state.first_time && <p className="my-0 mx-2 text-muted font-weight-bold">click here to play the song.</p>}
+            <EmitPlayButton music={this.state.actual_song} />
+          </div>
         </div>
         <SheetMusic
           keyId={1}

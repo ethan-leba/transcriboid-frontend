@@ -10,14 +10,14 @@ class SheetMusic extends React.Component {
   svgRender() {
     let svg = Snap("#svg" + this.props.keyId.toString());
     // NOTE: This method seems kind of clunky...
-    Snap.load("http://127.0.0.1:8887/svg_notes/stem_up/eighth_note.svg", e => {
+    Snap.load("http://127.0.0.1:5000/resources/stem_up/eighth_note.svg", e => {
       Snap.load(
-        "http://127.0.0.1:8887/svg_notes/stem_up/quarter_note.svg",
+        "http://127.0.0.1:5000/resources/stem_up/quarter_note.svg",
         q => {
           Snap.load(
-            "http://127.0.0.1:8887/svg_notes/stem_up/half_note.svg",
+            "http://127.0.0.1:5000/resources/stem_up/half_note.svg",
             h => {
-              Snap.load("http://127.0.0.1:8887/svg_notes/whole_note.svg", w => {
+              Snap.load("http://127.0.0.1:5000/resources/whole_note.svg", w => {
                 svg.clear();
                 let eg = e.select("g");
                 let qg = q.select("g");
