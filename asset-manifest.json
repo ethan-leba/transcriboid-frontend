@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/midi-frontend/static/css/main.e2217f0f.chunk.css",
+    "main.js": "/midi-frontend/static/js/main.11e8442f.chunk.js",
+    "main.js.map": "/midi-frontend/static/js/main.11e8442f.chunk.js.map",
+    "runtime~main.js": "/midi-frontend/static/js/runtime~main.8d4be55d.js",
+    "runtime~main.js.map": "/midi-frontend/static/js/runtime~main.8d4be55d.js.map",
+    "static/css/2.510409cd.chunk.css": "/midi-frontend/static/css/2.510409cd.chunk.css",
+    "static/js/2.342e7636.chunk.js": "/midi-frontend/static/js/2.342e7636.chunk.js",
+    "static/js/2.342e7636.chunk.js.map": "/midi-frontend/static/js/2.342e7636.chunk.js.map",
+    "index.html": "/midi-frontend/index.html",
+    "precache-manifest.523462eb6d6a73a72725aca4b019c9f8.js": "/midi-frontend/precache-manifest.523462eb6d6a73a72725aca4b019c9f8.js",
+    "service-worker.js": "/midi-frontend/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/midi-frontend/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.e2217f0f.chunk.css.map": "/midi-frontend/static/css/main.e2217f0f.chunk.css.map"
+  }
+}
