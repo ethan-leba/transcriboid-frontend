@@ -2,6 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Snap from "snapsvg-cjs";
 
+import eighth_note from './resources/stem_up/eighth_note.svg';
+import quarter_note from './resources/stem_up/quarter_note.svg';
+import half_note from './resources/stem_up/half_note.svg';
+import whole_note from './resources/whole_note.svg';
+
 class SheetMusic extends React.Component {
   state = {
     hovernote: null
@@ -10,14 +15,14 @@ class SheetMusic extends React.Component {
   svgRender() {
     let svg = Snap("#svg" + this.props.keyId.toString());
     // NOTE: This method seems kind of clunky...
-    Snap.load("http://127.0.0.1:5000/resources/stem_up/eighth_note.svg", e => {
+    Snap.load(eighth_note, e => {
       Snap.load(
-        "http://127.0.0.1:5000/resources/stem_up/quarter_note.svg",
+        quarter_note,
         q => {
           Snap.load(
-            "http://127.0.0.1:5000/resources/stem_up/half_note.svg",
+            half_note,
             h => {
-              Snap.load("http://127.0.0.1:5000/resources/whole_note.svg", w => {
+              Snap.load(whole_note, w => {
                 svg.clear();
                 let eg = e.select("g");
                 let qg = q.select("g");

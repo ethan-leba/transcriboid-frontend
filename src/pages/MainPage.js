@@ -30,9 +30,9 @@ class MainPage extends React.Component {
 
   // calls the python API
   componentDidMount() {
-    axios.get("http://127.0.0.1:5000/api/get")
+    axios.get("/api/get")
       .then(response => {
-        return response.data
+        return JSON.parse(response.data)
       })
       .then(songdata => {
         this.setState({
