@@ -4,7 +4,6 @@ import axios from "axios";
 import {Redirect} from "react-router-dom";
 
 import SheetMusic from "../components/SheetMusic";
-import {PlayJSON} from "../scripts/PlayJSON";
 import {EmitPlayButton} from "../components/PlayButton";
 
 // The page where the user sees the comparison between their input and the actual song

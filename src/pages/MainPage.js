@@ -2,11 +2,10 @@ import React from "react";
 import Tone from "tone";
 import axios from "axios";
 
-import {PlayJSON} from "../scripts/PlayJSON";
 import SheetMusic from "../components/SheetMusic";
-//import Button from "../components/Button";
 import {Redirect} from "react-router-dom";
 import {EmitPlayButton} from "../components/PlayButton"
+import {LoadingDisplay} from "../components/LoadingDisplay"
 import "./MainPage.css";
 
 // The main page where the user listens to the song and attempts to transcribe it.
@@ -91,7 +90,7 @@ class MainPage extends React.Component {
       return <Redirect to="/compare" />;
     }
     if (this.state.loading) {
-      return null;
+      return <LoadingDisplay/>;
     }
     return (
       <div className="pt-3">
