@@ -16,7 +16,7 @@
   }
 }
 
-.loading-text {
+.loadingText {
   animation-name: topFadeOut;
   animation-duration: 3s;
 }

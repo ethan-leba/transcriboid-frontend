@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import "./LoadingDisplay.css"
+import style from "./LoadingDisplay.module.css"
 // Used for the loading text animation
 const loadList = {
       0: "Loading",
@@ -28,7 +28,7 @@ const LoadingDisplay = () => {
   return (
     <div className="d-flex flex-column h-100 justify-content-center">
     <h2 className="w-100 text-center">{loadList[current]}</h2>
-    {submessage ? ( <p className="text-center text-muted loading-text">The Heroku servers are warming up!</p> ) :
+    {submessage ? ( <p className={`text-center text-muted ${style.loadingText}`}>The Heroku servers are warming up!</p> ) :
     (<p>&nbsp;</p>)}
     </div>
   )
