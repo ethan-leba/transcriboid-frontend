@@ -176,7 +176,7 @@ class SheetMusic extends React.Component {
   drawBoundingBox(no, noteval, svg) {
     const bb = svg
       .rect(
-        this.props.marginX,
+        this.props.marginX + this.props.notes.length * this.lineHeight() * 2,
         this.calculateLineHeight(no),
         this.props.width - this.props.marginX * 2,
         this.lineHeight() / 2
@@ -188,11 +188,12 @@ class SheetMusic extends React.Component {
     g.mousedown(() => {
       this.props.addNote(noteval);
     });
-    g.hover(
+    g.mouseover(
       () => {
         this.setState({hovernote: noteval});
-      },
+      }).mouseout(
       () => {
+        console.log("unhovered")
         this.setState({hovernote: null});
       }
     );

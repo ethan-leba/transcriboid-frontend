@@ -29,7 +29,7 @@ class MainPage extends React.Component {
 
   // calls the python API
   componentDidMount() {
-    axios.get("/api/geet")
+    axios.get("/api/get")
       .then(response => {
         return JSON.parse(response.data)
       })
