@@ -5,7 +5,7 @@ import axios from "axios";
 import SheetMusic from "../components/SheetMusic";
 import {Redirect} from "react-router-dom";
 import {EmitPlayButton} from "../components/PlayButton"
-import {LoadingDisplay} from "../components/LoadingDisplay"
+import LoadingDisplay from "../components/LoadingDisplay"
 import "./MainPage.css";
 
 // The main page where the user listens to the song and attempts to transcribe it.
@@ -29,7 +29,7 @@ class MainPage extends React.Component {
 
   // calls the python API
   componentDidMount() {
-    axios.get("/api/get")
+    axios.get("/api/geet")
       .then(response => {
         return JSON.parse(response.data)
       })
