@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-
+import "./LoadingDisplay.css"
+// Used for the loading text animation
 const loadList = {
       0: "Loading",
       1: "Loading.",
@@ -7,6 +8,7 @@ const loadList = {
       3: "Loading..."
 }
 
+// Draws the component shown to the user while waiting for the page to load
 const LoadingDisplay = () => {
   const [current, setCurrent] = useState(0);
   const [submessage, setSubmessage] = useState(false);
@@ -26,7 +28,7 @@ const LoadingDisplay = () => {
   return (
     <div className="d-flex flex-column h-100 justify-content-center">
     <h2 className="w-100 text-center">{loadList[current]}</h2>
-    {submessage ? ( <p className="text-center text-muted">The Heroku servers are warming up!</p> ) :
+    {submessage ? ( <p className="text-center text-muted loading-text">The Heroku servers are warming up!</p> ) :
     (<p>&nbsp;</p>)}
     </div>
   )
