@@ -5,6 +5,21 @@ h1,h2,h3,h4,h5,h6, p, button {
   font-family: 'Roboto Slab', serif;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 button {
   --pressed-shadow-color: #666;
   --pressed-color: #999;
