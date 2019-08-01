@@ -44,7 +44,7 @@ class SheetMusic extends React.Component {
                     this.drawBoundingBox(1.25 + i * -0.5, i, svg);
                   }
                 }
-                this.drawNotes(svg, note_shapes, this.getHoverArray());
+                this.drawNotes(svg, note_shapes, this.getHoverArray(), !(this.state.hovernote === null));
               });
             }
           );
@@ -53,6 +53,7 @@ class SheetMusic extends React.Component {
     });
   }
 
+  // Appends the hover note to the array if one exists
   getHoverArray = () => {
     if (this.state.hovernote === null) {
       return this.props.notes;
@@ -68,16 +69,21 @@ class SheetMusic extends React.Component {
   };
 
   // Draws all the notes onto the lines
-  drawNotes(svg, lo_shape, lo_notes) {
+  drawNotes(svg, lo_shape, lo_notes, has_hovernote) {
     var num = 0;
-    lo_notes.forEach(note => {
+    lo_notes.forEach((note, key, arr) => {
+      if (has_hovernote && Object.is(arr.length - 1, key)) {
+        // execute last item logic
+        this.drawNote(svg, lo_shape, num, note, true);
+      } else {
       this.drawNote(svg, lo_shape, num, note);
       num += 1;
+    }
     });
   }
 
   // Draws a note onto the page given a position and a duration
-  drawNote(svg, lo_shape, no, note) {
+  drawNote(svg, lo_shape, no, note, is_hovernote=false) {
     const x = 100 + no * this.lineHeight() * 2;
     const y = this.C_position() - note.relative_value * (this.lineHeight() / 2);
     var shapey = null;
@@ -100,8 +106,18 @@ class SheetMusic extends React.Component {
     shapey.attr({
       transform: `translate(${x}, ${y})`,
       pointerEvents: "none",
-      fill: "rgb(3,100,3)"
     });
+    if(is_hovernote) {
+      shapey.attr({
+        fill: '#919998',
+        stroke: '#999'
+      });
+    } else {
+      shapey.attr({
+        fill: '#000',
+        stroke: '#000'
+      });
+    }
     svg.append(shapey);
     if (this.props.comparison) {
       svg.ellipse(x, 30, 6, 6).attr({
@@ -193,7 +209,6 @@ class SheetMusic extends React.Component {
         this.setState({hovernote: noteval});
       }).mouseout(
       () => {
-        console.log("unhovered")
         this.setState({hovernote: null});
       }
     );
