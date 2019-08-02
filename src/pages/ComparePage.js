@@ -47,16 +47,6 @@ class ComparePage extends React.Component {
     }
   }
 
-  // Returns the amount of notes correct that the user inputted
-  getAmtCorrect = () => {
-    return this.state.corrected_song.filter(note => note.correct).length;
-  };
-
-  // Returns the total number of notes
-  getTotal = () => {
-    return this.state.actual_song.length;
-  };
-
   // Redirects to main
   handlePlayAgain = () => {
     Tone.Transport.stop();
@@ -73,9 +63,21 @@ class ComparePage extends React.Component {
     });
   };
 
+  // Returns the amount of notes correct that the user inputted
+  getAmtCorrect = () => {
+    return this.state.corrected_song.filter(note => note.correct).length;
+  };
+
+  // Returns the total number of notes
+  getTotal = () => {
+    return this.state.actual_song.length;
+  };
+
+  // Calculates the percentage of notes correct in the user's transcription
   getPct = () => {
     return Math.floor((this.getAmtCorrect() / this.getTotal()) * 100);
   };
+
   render() {
     if (this.state.redirect_home) {
       return <Redirect to="/" />;
