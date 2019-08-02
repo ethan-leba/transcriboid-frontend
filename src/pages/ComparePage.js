@@ -89,7 +89,7 @@ class ComparePage extends React.Component {
     return (
       <div className="h-100 row align-items-center">
         <div className="col">
-        <div className="flexbar my-2">
+        <div className="d-flex flex-row align-items-center justify-content-between my-2">
           <h3 className="m-0 font-weight-bold">Actual Transcription</h3>
           <EmitPlayButton music={this.state.actual_song} />
         </div>
@@ -100,7 +100,7 @@ class ComparePage extends React.Component {
           notes={this.state.actual_song}
           editable={false}
         />
-        <div className="flexbar my-2">
+        <div className="d-flex flex-row align-items-center justify-content-between my-2">
           <h3 className="m-0 font-weight-bold">Your Transcription ({this.getPct()}% correct)</h3>
           <EmitPlayButton music={this.state.corrected_song} />
         </div>
@@ -112,7 +112,7 @@ class ComparePage extends React.Component {
           editable={false}
           comparison={true}
         />
-      <div className="flexbar flexcenter my-2">
+      <div className="d-flex flex-row align-items-center justify-content-center my-2">
         <button className="medium" onClick={this.handleBackToStart}>Quit</button>
         <button className="medium red" onClick={this.handlePlayAgain} >Try again</button>
         </div>

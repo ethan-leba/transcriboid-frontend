@@ -6,7 +6,6 @@ import SheetMusic from "../components/SheetMusic";
 import {Redirect} from "react-router-dom";
 import {EmitPlayButton} from "../components/PlayButton"
 import LoadingDisplay from "../components/LoadingDisplay"
-import "./MainPage.css";
 
 // The main page where the user listens to the song and attempts to transcribe it.
 class MainPage extends React.Component {
@@ -94,7 +93,7 @@ class MainPage extends React.Component {
     }
     return (
       <div className="pt-3">
-        <div className="flexbar mt-3 mb-2">
+        <div className="d-flex flex-row align-items-center justify-content-between mt-3 mb-2">
           <h2 className="font-weight-bold m-0">Transcriboid</h2>
           <div className="d-flex align-items-end">
             {this.state.first_time && <p className="my-0 mx-2 text-muted font-weight-bold">click here to play the song.</p>}
@@ -110,7 +109,7 @@ class MainPage extends React.Component {
           notes={this.state.user_song}
           selectedDuration={this.state.selected_duration}
         />
-      <div className="flexbar my-2">
+      <div className="d-flex flex-row align-items-center justify-content-between my-2">
           <div>
             <button className="medium thin" onClick={() => this.setDuration(0.125)}>Eighth</button>
             <button className="medium thin" onClick={() => this.setDuration(0.25)}>Quarter</button>

@@ -120,8 +120,10 @@ class SheetMusic extends React.Component {
     }
     svg.append(shapey);
     if (this.props.comparison) {
-      svg.ellipse(x, 30, 6, 6).attr({
-        fill: note.correct ? "#4ED81A" : "#FF336E"
+      svg.rect(x, 30, 12, 12).attr({
+        fill: note.correct ? "#4ED81A" : "#FF336E",
+        stroke: note.correct ? "#44b81a" : "#d62255",
+        strokeWidth: 2
       });
     }
     this.drawLedgerLines(svg, no, note);
