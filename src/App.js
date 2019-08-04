@@ -2,7 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import { EmitterProvider, Emitter } from 'react-emitter'
 
+import { isMobile } from './scripts/MobileDetect.js'
+
 import MainPage from './pages/MainPage.js'
+import UnsupportedDevicePage from './pages/UnsupportedDevicePage.js'
 import StartPage from './pages/StartPage.js'
 import ComparePage from './pages/ComparePage.js'
 import PropsRoute from './scripts/RouterHelper'
@@ -38,6 +41,9 @@ class App extends React.Component {
   }
 
   render() {
+    if (isMobile()) {
+      return <UnsupportedDevicePage />
+    }
     return (
       <Switch>
         <Route exact path="/" component={StartPage} />
