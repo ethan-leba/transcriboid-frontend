@@ -1,7 +1,9 @@
 export function isMobile() {
-  return window.innerHeight > window.innerWidth && navigator.maxTouchPoints > 0
+  return window.innerHeight > window.innerWidth && isTouchscreen()
 }
 
 export function isTouchscreen() {
-  return navigator.maxTouchPoints > 0
+ return (('ontouchstart' in window)
+      || (navigator.MaxTouchPoints > 0)
+      || (navigator.msMaxTouchPoints > 0));
 }
