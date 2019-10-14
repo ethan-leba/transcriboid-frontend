@@ -1,10 +1,10 @@
 import React from "react";
 import Tone from "tone";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import SheetMusic from "../components/SheetMusic";
-import {EmitPlayButton} from "../components/PlayButton";
+import { EmitPlayButton } from "../components/PlayButton";
 
 // The page where the user sees the comparison between their input and the actual song
 class ComparePage extends React.Component {
@@ -47,6 +47,7 @@ class ComparePage extends React.Component {
     }
   }
 
+  // -- REDIRECT HANDLERS --
   // Redirects to main
   handlePlayAgain = () => {
     Tone.Transport.stop();
@@ -63,6 +64,7 @@ class ComparePage extends React.Component {
     });
   };
 
+  // -- VIEW HELPERS --
   // Returns the amount of notes correct that the user inputted
   getAmtCorrect = () => {
     return this.state.corrected_song.filter(note => note.correct).length;
@@ -91,33 +93,39 @@ class ComparePage extends React.Component {
     return (
       <div className="h-100 row align-items-center">
         <div className="col">
-        <div className="d-flex flex-row align-items-center justify-content-between my-2">
-          <h3 className="m-0 font-weight-bold">Actual Transcription</h3>
-          <EmitPlayButton music={this.state.actual_song} />
-        </div>
-        <SheetMusic
-          keyId={1}
-          width={window.innerWidth - 10 * 2}
-          height={window.innerHeight / 3}
-          notes={this.state.actual_song}
-          editable={false}
-        />
-        <div className="d-flex flex-row align-items-center justify-content-between my-2">
-          <h3 className="m-0 font-weight-bold">Your Transcription ({this.getPct()}% correct)</h3>
-          <EmitPlayButton music={this.state.corrected_song} />
-        </div>
-        <SheetMusic
-          keyId={2}
-          width={window.innerWidth - 10 * 2}
-          height={window.innerHeight / 3}
-          notes={this.state.corrected_song}
-          editable={false}
-          comparison={true}
-        />
-      <div className="d-flex flex-row align-items-center justify-content-center my-2">
-        <button className="medium" onClick={this.handleBackToStart}>Quit</button>
-        <button className="medium red" onClick={this.handlePlayAgain} >Try again</button>
-        </div>
+          <div className="d-flex flex-row align-items-center justify-content-between my-2">
+            <h3 className="m-0 font-weight-bold">Actual Transcription</h3>
+            <EmitPlayButton music={this.state.actual_song} />
+          </div>
+          <SheetMusic
+            keyId={1}
+            width={window.innerWidth - 10 * 2}
+            height={window.innerHeight / 3}
+            notes={this.state.actual_song}
+            editable={false}
+          />
+          <div className="d-flex flex-row align-items-center justify-content-between my-2">
+            <h3 className="m-0 font-weight-bold">
+              Your Transcription ({this.getPct()}% correct)
+            </h3>
+            <EmitPlayButton music={this.state.corrected_song} />
+          </div>
+          <SheetMusic
+            keyId={2}
+            width={window.innerWidth - 10 * 2}
+            height={window.innerHeight / 3}
+            notes={this.state.corrected_song}
+            editable={false}
+            comparison={true}
+          />
+          <div className="d-flex flex-row align-items-center justify-content-center my-2">
+            <button className="medium" onClick={this.handleBackToStart}>
+              Quit
+            </button>
+            <button className="medium red" onClick={this.handlePlayAgain}>
+              Try again
+            </button>
+          </div>
         </div>
       </div>
     );

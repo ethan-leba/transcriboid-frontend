@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Snap from "snapsvg-cjs";
 
-import eighth_note from './resources/stem_up/eighth_note.svg';
-import quarter_note from './resources/stem_up/quarter_note.svg';
-import half_note from './resources/stem_up/half_note.svg';
-import whole_note from './resources/whole_note.svg';
+import eighth_note from "./resources/stem_up/eighth_note.svg";
+import quarter_note from "./resources/stem_up/quarter_note.svg";
+import half_note from "./resources/stem_up/half_note.svg";
+import whole_note from "./resources/whole_note.svg";
 
+// This component contains the SVG view for the sheet music
 class SheetMusic extends React.Component {
   state = {
     hovernote: null
@@ -16,40 +17,39 @@ class SheetMusic extends React.Component {
     let svg = Snap("#svg" + this.props.keyId.toString());
     // NOTE: This method seems kind of clunky...
     Snap.load(eighth_note, e => {
-      Snap.load(
-        quarter_note,
-        q => {
-          Snap.load(
-            half_note,
-            h => {
-              Snap.load(whole_note, w => {
-                svg.clear();
-                let eg = e.select("g");
-                let qg = q.select("g");
-                let hg = h.select("g");
-                let wg = w.select("g");
-                const note_shapes = [eg, qg, hg, wg];
-                svg.rect(0, 0, this.props.width, this.props.height).attr({
-                  fill: "#FFF",
-                  stroke: "#000",
-                  strokeWidth: "5"
-                });
-                this.drawLine(0, svg);
-                this.drawLine(1, svg);
-                this.drawLine(2, svg);
-                this.drawLine(3, svg);
-                this.drawLine(4, svg);
-                if (this.props.editable) {
-                  for (var i = -7; i <= 7; i++) {
-                    this.drawBoundingBox(1.25 + i * -0.5, i, svg);
-                  }
-                }
-                this.drawNotes(svg, note_shapes, this.getHoverArray(), !(this.state.hovernote === null));
-              });
+      Snap.load(quarter_note, q => {
+        Snap.load(half_note, h => {
+          Snap.load(whole_note, w => {
+            svg.clear();
+            let eg = e.select("g");
+            let qg = q.select("g");
+            let hg = h.select("g");
+            let wg = w.select("g");
+            const note_shapes = [eg, qg, hg, wg];
+            svg.rect(0, 0, this.props.width, this.props.height).attr({
+              fill: "#FFF",
+              stroke: "#000",
+              strokeWidth: "5"
+            });
+            this.drawLine(0, svg);
+            this.drawLine(1, svg);
+            this.drawLine(2, svg);
+            this.drawLine(3, svg);
+            this.drawLine(4, svg);
+            if (this.props.editable) {
+              for (var i = -7; i <= 7; i++) {
+                this.drawBoundingBox(1.25 + i * -0.5, i, svg);
+              }
             }
-          );
-        }
-      );
+            this.drawNotes(
+              svg,
+              note_shapes,
+              this.getHoverArray(),
+              !(this.state.hovernote === null)
+            );
+          });
+        });
+      });
     });
   }
 
@@ -76,14 +76,14 @@ class SheetMusic extends React.Component {
         // execute last item logic
         this.drawNote(svg, lo_shape, num, note, true);
       } else {
-      this.drawNote(svg, lo_shape, num, note);
-      num += 1;
-    }
+        this.drawNote(svg, lo_shape, num, note);
+        num += 1;
+      }
     });
   }
 
   // Draws a note onto the page given a position and a duration
-  drawNote(svg, lo_shape, no, note, is_hovernote=false) {
+  drawNote(svg, lo_shape, no, note, is_hovernote = false) {
     const x = 100 + no * this.lineHeight() * 2;
     const y = this.C_position() - note.relative_value * (this.lineHeight() / 2);
     var shapey = null;
@@ -105,17 +105,17 @@ class SheetMusic extends React.Component {
     }
     shapey.attr({
       transform: `translate(${x}, ${y})`,
-      pointerEvents: "none",
+      pointerEvents: "none"
     });
-    if(is_hovernote) {
+    if (is_hovernote) {
       shapey.attr({
-        fill: '#919998',
-        stroke: '#999'
+        fill: "#919998",
+        stroke: "#999"
       });
     } else {
       shapey.attr({
-        fill: '#000',
-        stroke: '#000'
+        fill: "#000",
+        stroke: "#000"
       });
     }
     svg.append(shapey);
@@ -189,7 +189,6 @@ class SheetMusic extends React.Component {
       });
   }
 
-  // TODO: empty note on dehover
   // Draws the bounding boxes for placing notes
   drawBoundingBox(no, noteval, svg) {
     const bb = svg
@@ -206,14 +205,11 @@ class SheetMusic extends React.Component {
     g.mousedown(() => {
       this.props.addNote(noteval);
     });
-    g.mouseover(
-      () => {
-        this.setState({hovernote: noteval});
-      }).mouseout(
-      () => {
-        this.setState({hovernote: null});
-      }
-    );
+    g.mouseover(() => {
+      this.setState({ hovernote: noteval });
+    }).mouseout(() => {
+      this.setState({ hovernote: null });
+    });
   }
 
   // The height or distance between each line on the sheet music
