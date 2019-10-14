@@ -1,6 +1,6 @@
 # Transcriboid (front-end)
 
-Transcriboid is a musical training web application that I developed over the summer of 2019. It generates melodies by analyzing patterns in midi files, challenges the user to discern the rhythms and melodies using only their ears, and gives them feedback on how accurately they transcribed the melody. You can check it out at [transcriboid.herokuapp.com](transcriboid.herokuapp.com). (The load times are slow, please be patient!)
+Transcriboid is a musical training web application that I developed over the summer of 2019. It generates melodies by analyzing patterns in midi files, challenges the user to discern the rhythms and melodies using only their ears, and gives them feedback on how accurately they transcribed the melody. You can check it out at [transcriboid.herokuapp.com](transcriboid.herokuapp.com). *The load times are slow, please be patient!*
 
 This repository contains the front-end interface for my project transcriboid, written using React.js and Bootstrap. It takes in data from the backend using a RESTful API, plays the melodies, and provides the sheet music interface.
 
@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-NPM - Can be installed [here](https://www.npmjs.com/)
+NPM - Can be installed [here](https://www.npmjs.com/).
 
 ### Installing
 
@@ -55,4 +55,4 @@ This project is deployed on Heroku, using [heroku-buildpack-static](https://gith
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Created by Ethan Leba
+#### Created by Ethan Leba
