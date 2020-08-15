@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/transcriboid/static/css/main.e2217f0f.chunk.css",
-    "main.js": "/transcriboid/static/js/main.21733ec3.chunk.js",
-    "main.js.map": "/transcriboid/static/js/main.21733ec3.chunk.js.map",
-    "runtime~main.js": "/transcriboid/static/js/runtime~main.783ef3ca.js",
-    "runtime~main.js.map": "/transcriboid/static/js/runtime~main.783ef3ca.js.map",
-    "static/css/2.510409cd.chunk.css": "/transcriboid/static/css/2.510409cd.chunk.css",
-    "static/js/2.342e7636.chunk.js": "/transcriboid/static/js/2.342e7636.chunk.js",
-    "static/js/2.342e7636.chunk.js.map": "/transcriboid/static/js/2.342e7636.chunk.js.map",
-    "index.html": "/transcriboid/index.html",
-    "precache-manifest.0907d6cbb53ae69f1121d809a5bc32d2.js": "/transcriboid/precache-manifest.0907d6cbb53ae69f1121d809a5bc32d2.js",
-    "service-worker.js": "/transcriboid/service-worker.js",
-    "static/css/2.510409cd.chunk.css.map": "/transcriboid/static/css/2.510409cd.chunk.css.map",
-    "static/css/main.e2217f0f.chunk.css.map": "/transcriboid/static/css/main.e2217f0f.chunk.css.map"
+    "main.css": "/transcriboid-frontend/static/css/main.7d591690.chunk.css",
+    "main.js": "/transcriboid-frontend/static/js/main.aadf6eba.chunk.js",
+    "main.js.map": "/transcriboid-frontend/static/js/main.aadf6eba.chunk.js.map",
+    "runtime~main.js": "/transcriboid-frontend/static/js/runtime~main.2cc0f58e.js",
+    "runtime~main.js.map": "/transcriboid-frontend/static/js/runtime~main.2cc0f58e.js.map",
+    "static/css/2.510409cd.chunk.css": "/transcriboid-frontend/static/css/2.510409cd.chunk.css",
+    "static/js/2.0bd2cce8.chunk.js": "/transcriboid-frontend/static/js/2.0bd2cce8.chunk.js",
+    "static/js/2.0bd2cce8.chunk.js.map": "/transcriboid-frontend/static/js/2.0bd2cce8.chunk.js.map",
+    "index.html": "/transcriboid-frontend/index.html",
+    "precache-manifest.628970b929348188660bf29286e3c861.js": "/transcriboid-frontend/precache-manifest.628970b929348188660bf29286e3c861.js",
+    "service-worker.js": "/transcriboid-frontend/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/transcriboid-frontend/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.7d591690.chunk.css.map": "/transcriboid-frontend/static/css/main.7d591690.chunk.css.map",
+    "static/media/eighth_note.svg": "/transcriboid-frontend/static/media/eighth_note.04892710.svg",
+    "static/media/half_note.svg": "/transcriboid-frontend/static/media/half_note.f0263bb6.svg",
+    "static/media/quarter_note.svg": "/transcriboid-frontend/static/media/quarter_note.aaec5659.svg",
+    "static/media/whole_note.svg": "/transcriboid-frontend/static/media/whole_note.f4f20522.svg"
   }
 }
