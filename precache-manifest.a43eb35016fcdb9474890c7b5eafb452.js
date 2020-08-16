@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1cfd6d3b7e4167d11882bfc0c63e2fd4",
+    "revision": "ddb3f130959844a4fdc5d77cd4cf70bd",
     "url": "/transcriboid-frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/transcriboid-frontend/static/css/2.510409cd.chunk.css"
   },
   {
-    "revision": "8d4bba4185800e6293f6",
+    "revision": "da8fee4209802cc7cc63",
     "url": "/transcriboid-frontend/static/css/main.7d591690.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/transcriboid-frontend/static/js/2.5110e498.chunk.js"
   },
   {
-    "revision": "8d4bba4185800e6293f6",
-    "url": "/transcriboid-frontend/static/js/main.ed1bcdc1.chunk.js"
+    "revision": "da8fee4209802cc7cc63",
+    "url": "/transcriboid-frontend/static/js/main.30d93da1.chunk.js"
   },
   {
     "revision": "3013d73d415f3cabc4d6",

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/transcriboid-frontend/static/css/main.7d591690.chunk.css",
-    "main.js": "/transcriboid-frontend/static/js/main.ed1bcdc1.chunk.js",
-    "main.js.map": "/transcriboid-frontend/static/js/main.ed1bcdc1.chunk.js.map",
+    "main.js": "/transcriboid-frontend/static/js/main.30d93da1.chunk.js",
+    "main.js.map": "/transcriboid-frontend/static/js/main.30d93da1.chunk.js.map",
     "runtime~main.js": "/transcriboid-frontend/static/js/runtime~main.2cc0f58e.js",
     "runtime~main.js.map": "/transcriboid-frontend/static/js/runtime~main.2cc0f58e.js.map",
     "static/css/2.510409cd.chunk.css": "/transcriboid-frontend/static/css/2.510409cd.chunk.css",
     "static/js/2.5110e498.chunk.js": "/transcriboid-frontend/static/js/2.5110e498.chunk.js",
     "static/js/2.5110e498.chunk.js.map": "/transcriboid-frontend/static/js/2.5110e498.chunk.js.map",
     "index.html": "/transcriboid-frontend/index.html",
-    "precache-manifest.8eb1c45750435a2ce1b689afe3f97559.js": "/transcriboid-frontend/precache-manifest.8eb1c45750435a2ce1b689afe3f97559.js",
+    "precache-manifest.a43eb35016fcdb9474890c7b5eafb452.js": "/transcriboid-frontend/precache-manifest.a43eb35016fcdb9474890c7b5eafb452.js",
     "service-worker.js": "/transcriboid-frontend/service-worker.js",
     "static/css/2.510409cd.chunk.css.map": "/transcriboid-frontend/static/css/2.510409cd.chunk.css.map",
     "static/css/main.7d591690.chunk.css.map": "/transcriboid-frontend/static/css/main.7d591690.chunk.css.map",
