@@ -2,6 +2,7 @@ import React from "react";
 import Tone from "tone";
 import axios from "axios";
 
+import {BACKEND_URL} from "../constants"
 import SheetMusic from "../components/SheetMusic";
 import {Redirect} from "react-router-dom";
 import {EmitPlayButton} from "../components/PlayButton"
@@ -28,7 +29,7 @@ class MainPage extends React.Component {
 
   // calls the python API
   componentDidMount() {
-    axios.get("/api/get")
+    axios.get(`${BACKEND_URL}/api/get`)
       .then(response => {
         return JSON.parse(response.data)
       })

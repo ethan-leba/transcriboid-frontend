@@ -3,6 +3,7 @@ import Tone from "tone";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
+import {BACKEND_URL} from "../constants"
 import SheetMusic from "../components/SheetMusic";
 import { EmitPlayButton } from "../components/PlayButton";
 
@@ -31,7 +32,7 @@ class ComparePage extends React.Component {
       });
     } else {
       axios
-        .post("/api/compare", this.props.popPost())
+        .post(`${BACKEND_URL}/api/compare`, this.props.popPost())
         .then(response => JSON.parse(response.data))
         .then(json => {
           this.setState({

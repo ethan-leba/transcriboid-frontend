@@ -56,6 +56,7 @@ class App extends React.Component {
           popPost={this.popPost}
           hasPost={this.hasPost}
         />
+       <Route component={() => (<div>404 Not found </div>)} />
       </Switch>
     );
   }
