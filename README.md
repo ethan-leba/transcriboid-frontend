@@ -1,6 +1,8 @@
 # Transcriboid (front-end)
 
-Transcriboid is a musical training web application that I developed over the summer of 2019. It generates melodies by analyzing patterns in midi files, challenges the user to discern the rhythms and melodies using only their ears, and gives them feedback on how accurately they transcribed the melody. You can check it out at [transcriboid.herokuapp.com](transcriboid.herokuapp.com). *The load times are slow, please be patient!*
+![Comparing results](media/image1.png)
+
+Transcriboid is a musical training web application that I developed over the summer of 2019. It generates melodies by analyzing patterns in midi files, challenges the user to discern the rhythms and melodies using only their ears, and gives them feedback on how accurately they transcribed the melody. You can check it out at [transcriboid.ethanleba.com](transcriboid.ethanleba.com).
 
 This repository contains the front-end interface for my project transcriboid, written using React.js and Bootstrap. It takes in data from the backend using a RESTful API, plays the melodies, and provides the sheet music interface.
 
@@ -21,7 +23,7 @@ To build the project in a development environment, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You will also need to set the proxy in *package.json* to point to your RESTful API.
+You will also need to set the proxy in _package.json_ to point to your RESTful API.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
@@ -44,12 +46,12 @@ This project is deployed on Heroku, using [heroku-buildpack-static](https://gith
 
 ## Built With
 
-* [React.js](https://reactjs.org) - The web framework used
-* [Bootstrap](https://getbootstrap.com/) - CSS library
-* [Tone.js](https://tonejs.github.io) - used for audio display
-* [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start) - used for moving between pages
-* [Axios](https://github.com/axios/axios) - Used for HTTP requests
-* [Snap SVG](http://snapsvg.io/) - Used for SVG display
+- [React.js](https://reactjs.org) - The web framework used
+- [Bootstrap](https://getbootstrap.com/) - CSS library
+- [Tone.js](https://tonejs.github.io) - used for audio display
+- [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start) - used for moving between pages
+- [Axios](https://github.com/axios/axios) - Used for HTTP requests
+- [Snap SVG](http://snapsvg.io/) - Used for SVG display
 
 ## License
 
